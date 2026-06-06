@@ -1,0 +1,25 @@
+# macOS 系統產生的隱藏設定檔
+.DS_Store
+
+# Python 自動生成的快取資料夾與檔案
+__pycache__/
+*.pyc
+
+# 敏感的環境變數與金鑰檔
+.env
+.venv
+
+# Gradio 產生的本地暫存與快取資料夾
+.gradio/
+
+# 本地備份與測試用的檔案
+backup_code/
+log/
+models/
+results/
+figures/
+*.csv
+test.py
+
+# Other
+文獻/
