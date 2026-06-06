@@ -15,7 +15,7 @@ __pycache__/
 # 本地備份與測試用的檔案
 backup_code/
 log/
-*.csv
+*transaction*.csv
 test.py
 
 # Other

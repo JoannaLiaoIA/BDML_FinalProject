@@ -1,0 +1,161 @@
+Model,Algorithm,Rank,Feature,Importance
+Model 1,Random Forest,1,Spread_cur,0.5632463413040968
+Model 1,Random Forest,2,QuarterlyReturn_Lag1,0.13178925206823486
+Model 1,Random Forest,3,TradingVolume_cur,0.05351043045506257
+Model 1,Random Forest,4,ROE_last1,0.03991025848692999
+Model 1,Random Forest,5,VIX_QoQ,0.03370048185878971
+Model 1,Random Forest,6,QuarterlyReturn_Lag3,0.03235797657522862
+Model 1,Random Forest,7,DJIA_QoQ,0.02759734226850015
+Model 1,Random Forest,8,Last3mCumulativeRevenue_last1,0.02363655933225522
+Model 1,Random Forest,9,TradingTurnover_cur,0.018894535442450178
+Model 1,Random Forest,10,SP500_QoQ,0.007812785981752357
+Model 1,Random Forest,11,TradingMoney_cur,0.0075861778636634
+Model 1,Random Forest,12,IXIC_QoQ,0.007448249823453731
+Model 1,Random Forest,13,ROA_last1,0.006894078210053134
+Model 1,Random Forest,14,EPS_last1,0.006723127160534971
+Model 1,Random Forest,15,VIX_QoQ_Lag1,0.006172627768593983
+Model 1,Random Forest,16,SOX_QoQ,0.006060351667475795
+Model 1,Random Forest,17,GrossMargin_last1,0.00523086277570283
+Model 1,Random Forest,18,QuarterlyReturn_Lag2,0.004916002632286107
+Model 1,Random Forest,19,TotalUnempPct_last1,0.003072106323719254
+Model 1,Random Forest,20,OverallIndex_last1,0.002753398498133841
+Model 2,Random Forest,1,Spread_cur,0.5522243830325797
+Model 2,Random Forest,2,QuarterlyReturn_Lag1,0.13115935566054726
+Model 2,Random Forest,3,TradingVolume_cur,0.059479697055727226
+Model 2,Random Forest,4,QuarterlyReturn_Lag3,0.055040350460504185
+Model 2,Random Forest,5,ROE_last1,0.04509769591524984
+Model 2,Random Forest,6,Last3mCumulativeRevenue_last1,0.033801633253428276
+Model 2,Random Forest,7,TradingTurnover_cur,0.022707284708565593
+Model 2,Random Forest,8,DJIA_YoY,0.015679609498188772
+Model 2,Random Forest,9,TradingMoney_cur,0.01008668766221712
+Model 2,Random Forest,10,GrossMargin_last1,0.008605594327838879
+Model 2,Random Forest,11,QuarterlyReturn_Lag2,0.008561593048855887
+Model 2,Random Forest,12,ROA_last1,0.006871335456145884
+Model 2,Random Forest,13,VIX_YoY_Lag1,0.005537402781590719
+Model 2,Random Forest,14,EPS_last1,0.005534106125980344
+Model 2,Random Forest,15,VIX_YoY,0.005159739111101601
+Model 2,Random Forest,16,SOX_YoY,0.005101448007666442
+Model 2,Random Forest,17,TotalUnempPct_last1,0.004374038793812852
+Model 2,Random Forest,18,VIX_YoY_Lag2,0.0038199220741556355
+Model 2,Random Forest,19,FnG_YoY,0.0036226599916610192
+Model 2,Random Forest,20,VIX_YoY_Lag3,0.003112017104197931
+Model 3,Random Forest,1,QuarterlyVolatility_Lag1,0.9494757284659552
+Model 3,Random Forest,2,Spread_cur,0.012951386337888206
+Model 3,Random Forest,3,QuarterlyVolatility_Lag3,0.011869002992674038
+Model 3,Random Forest,4,QuarterlyVolatility_Lag2,0.006867509195159761
+Model 3,Random Forest,5,EPS_last1,0.002672968156196604
+Model 3,Random Forest,6,TradingTurnover_cur,0.002016759494063269
+Model 3,Random Forest,7,ROE_last1,0.00198043343204891
+Model 3,Random Forest,8,TradingVolume_cur,0.0017761430488221176
+Model 3,Random Forest,9,Last3mCumulativeRevenue_last1,0.0013554857135882417
+Model 3,Random Forest,10,FnG_QoQ_Lag2,0.0013368674444673744
+Model 3,Random Forest,11,TradingMoney_cur,0.0009869549963525226
+Model 3,Random Forest,12,ROA_last1,0.0009141151685150852
+Model 3,Random Forest,13,VIX_QoQ,0.0008274401116407618
+Model 3,Random Forest,14,Last3mCumulativeRevenueGrowthRate_last1,0.0008166601127748653
+Model 3,Random Forest,15,DJIA_QoQ,0.0006328655119769716
+Model 3,Random Forest,16,VIX_QoQ_Lag1,0.0006233405278522377
+Model 3,Random Forest,17,FnG_QoQ_Lag1,0.0004550854421069372
+Model 3,Random Forest,18,SP500_QoQ,0.00038822504842987645
+Model 3,Random Forest,19,VIX_QoQ_Lag3,0.0002903173846944041
+Model 3,Random Forest,20,DJIA_QoQ_Lag1,0.00023925107276697783
+Model 4,Random Forest,1,QuarterlyVolatility_Lag1,0.9467589510982235
+Model 4,Random Forest,2,Spread_cur,0.012453574213243246
+Model 4,Random Forest,3,QuarterlyVolatility_Lag3,0.01229011982983686
+Model 4,Random Forest,4,QuarterlyVolatility_Lag2,0.008115328309731037
+Model 4,Random Forest,5,EPS_last1,0.0031772207906408897
+Model 4,Random Forest,6,TradingTurnover_cur,0.0022899145870195975
+Model 4,Random Forest,7,ROE_last1,0.0022579302348233166
+Model 4,Random Forest,8,TradingVolume_cur,0.0018641111399727466
+Model 4,Random Forest,9,FnG_YoY_Lag2,0.001209900253142205
+Model 4,Random Forest,10,ROA_last1,0.0010689455345824113
+Model 4,Random Forest,11,TradingMoney_cur,0.0010299123399923793
+Model 4,Random Forest,12,Last3mCumulativeRevenue_last1,0.0009758387206346218
+Model 4,Random Forest,13,VIX_YoY,0.0007967192670107357
+Model 4,Random Forest,14,Last3mCumulativeRevenueGrowthRate_last1,0.0007769138251352043
+Model 4,Random Forest,15,FnG_YoY,0.0007219361385189322
+Model 4,Random Forest,16,VIX_YoY_Lag1,0.000543283843601539
+Model 4,Random Forest,17,SP500_YoY,0.0005397072916743242
+Model 4,Random Forest,18,GrossMargin_last1,0.00037333161700073487
+Model 4,Random Forest,19,DJIA_YoY_Lag1,0.0003082126392005884
+Model 4,Random Forest,20,VIX_YoY_Lag3,0.0002931653004526484
+Model 1,XGBoost,1,QuarterlyReturn_Lag3,0.13601958751678467
+Model 1,XGBoost,2,Spread_cur,0.09893415123224258
+Model 1,XGBoost,3,TradingMoney_cur,0.07803996652364731
+Model 1,XGBoost,4,QuarterlyReturn_Lag1,0.06981391459703445
+Model 1,XGBoost,5,FnG_QoQ_Lag3,0.04350575432181358
+Model 1,XGBoost,6,ROE_last1,0.04181161895394325
+Model 1,XGBoost,7,VIX_QoQ,0.03766702860593796
+Model 1,XGBoost,8,DJIA_QoQ,0.0354669913649559
+Model 1,XGBoost,9,IXIC_QoQ,0.034136828035116196
+Model 1,XGBoost,10,ESG_occupational_health_and_safety_last1,0.031190548092126846
+Model 1,XGBoost,11,SOX_QoQ_Lag3,0.030214114114642143
+Model 1,XGBoost,12,TradingVolume_cur,0.02989530749619007
+Model 1,XGBoost,13,SOX_QoQ,0.027096543461084366
+Model 1,XGBoost,14,SP500_QoQ,0.024080684408545494
+Model 1,XGBoost,15,Last3mCumulativeRevenue_last1,0.023708844557404518
+Model 1,XGBoost,16,QuarterlyReturn_Lag2,0.021341703832149506
+Model 1,XGBoost,17,TradingTurnover_cur,0.01754232682287693
+Model 1,XGBoost,18,Last3mCumulativeRevenueGrowthRate_last1,0.016071444377303123
+Model 1,XGBoost,19,EPS_last1,0.015353093855082989
+Model 1,XGBoost,20,FnG_QoQ,0.01496922317892313
+Model 2,XGBoost,1,QuarterlyReturn_Lag3,0.13682608306407928
+Model 2,XGBoost,2,FnG_YoY_Lag1,0.10120759159326553
+Model 2,XGBoost,3,Spread_cur,0.0997832790017128
+Model 2,XGBoost,4,QuarterlyReturn_Lag1,0.057873670011758804
+Model 2,XGBoost,5,DJIA_YoY,0.03486688807606697
+Model 2,XGBoost,6,ROE_last1,0.029054125770926476
+Model 2,XGBoost,7,SOX_YoY_Lag3,0.027208561077713966
+Model 2,XGBoost,8,TradingVolume_cur,0.025366105139255524
+Model 2,XGBoost,9,VIX_YoY_Lag3,0.024988405406475067
+Model 2,XGBoost,10,VIX_YoY,0.02430337481200695
+Model 2,XGBoost,11,IXIC_YoY_Lag1,0.023215845227241516
+Model 2,XGBoost,12,VIX_YoY_Lag1,0.02304326929152012
+Model 2,XGBoost,13,Last3mCumulativeRevenue_last1,0.02190142311155796
+Model 2,XGBoost,14,FnG_YoY,0.021642999723553658
+Model 2,XGBoost,15,IXIC_YoY_Lag2,0.02109581045806408
+Model 2,XGBoost,16,TradingTurnover_cur,0.020296474918723106
+Model 2,XGBoost,17,IXIC_YoY_Lag3,0.0199724268168211
+Model 2,XGBoost,18,DJIA_YoY_Lag1,0.01855519413948059
+Model 2,XGBoost,19,QuarterlyReturn_Lag2,0.017393026500940323
+Model 2,XGBoost,20,RediscountRate_last1,0.01720748282968998
+Model 3,XGBoost,1,QuarterlyVolatility_Lag1,0.3834227919578552
+Model 3,XGBoost,2,SP500_QoQ_Lag2,0.03782324120402336
+Model 3,XGBoost,3,ESG_climate_related_issues_management_last1,0.03335041180253029
+Model 3,XGBoost,4,FnG_QoQ_Lag1,0.026063717901706696
+Model 3,XGBoost,5,DJIA_QoQ_Lag1,0.025103863328695297
+Model 3,XGBoost,6,Last3mCumulativeRevenue_last1,0.020880505442619324
+Model 3,XGBoost,7,QuarterlyVolatility_Lag3,0.019399866461753845
+Model 3,XGBoost,8,Spread_cur,0.01750466413795948
+Model 3,XGBoost,9,TradingTurnover_cur,0.017200136557221413
+Model 3,XGBoost,10,SOX_QoQ_Lag3,0.01716695912182331
+Model 3,XGBoost,11,VIX_QoQ,0.016959650442004204
+Model 3,XGBoost,12,DJIA_QoQ_Lag2,0.016899727284908295
+Model 3,XGBoost,13,TradingVolume_cur,0.016375510022044182
+Model 3,XGBoost,14,TradingMoney_cur,0.015950370579957962
+Model 3,XGBoost,15,SOX_QoQ,0.01593085750937462
+Model 3,XGBoost,16,OverallIndex_last1,0.01576649583876133
+Model 3,XGBoost,17,EPS_last1,0.015758568421006203
+Model 3,XGBoost,18,FnG_QoQ_Lag2,0.015701645985245705
+Model 3,XGBoost,19,QuarterlyVolatility_Lag2,0.015407095663249493
+Model 3,XGBoost,20,ROE_last1,0.015200533904135227
+Model 4,XGBoost,1,QuarterlyVolatility_Lag1,0.3756745159626007
+Model 4,XGBoost,2,SP500_YoY_Lag2,0.040367987006902695
+Model 4,XGBoost,3,DJIA_YoY_Lag1,0.033934593200683594
+Model 4,XGBoost,4,OverallIndex_last1,0.026209751144051552
+Model 4,XGBoost,5,DJIA_YoY_Lag2,0.024003256112337112
+Model 4,XGBoost,6,SP500_YoY,0.023561468347907066
+Model 4,XGBoost,7,IXIC_YoY,0.02221246249973774
+Model 4,XGBoost,8,DJIA_YoY_Lag3,0.020855236798524857
+Model 4,XGBoost,9,SOX_YoY_Lag2,0.020066602155566216
+Model 4,XGBoost,10,RediscountRate_last1,0.019649121910333633
+Model 4,XGBoost,11,Last3mCumulativeRevenue_last1,0.019624784588813782
+Model 4,XGBoost,12,DJIA_YoY,0.019158754497766495
+Model 4,XGBoost,13,TradingTurnover_cur,0.018157443031668663
+Model 4,XGBoost,14,QuarterlyVolatility_Lag3,0.01813558302819729
+Model 4,XGBoost,15,FnG_YoY_Lag1,0.017606133595108986
+Model 4,XGBoost,16,FnG_YoY,0.016827292740345
+Model 4,XGBoost,17,Spread_cur,0.016285382211208344
+Model 4,XGBoost,18,IXIC_YoY_Lag3,0.016190415248274803
+Model 4,XGBoost,19,ROA_last1,0.015759842470288277
+Model 4,XGBoost,20,TradingVolume_cur,0.015437171794474125
