@@ -15,7 +15,6 @@ __pycache__/
 # 本地備份與測試用的檔案
 backup_code/
 log/
-models/
 *.csv
 test.py
 
