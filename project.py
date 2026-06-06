@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from fredapi import Fred
 from datetime import datetime
 
-HAS_ESG = True
+HAS_ESG = False
 IS_LARGE_DATASET = True
 TOP_N_FEATURES = 20
 
@@ -564,8 +564,8 @@ for label, df in models.items():
     all_evaluations.append(eva_cur)
     all_importances.append(imp_cur)
 
-    fig_rf.savefig(f"./figures/Imp_Fig_RF_{label}_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.png")
-    fig_xgb.savefig(f"./figures/Imp_Fig_XGB_{label}_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.png")
+    fig_rf.savefig(f"./figures/Imp_Fig_RF_{label}_{template_file_name}.png")
+    fig_xgb.savefig(f"./figures/Imp_Fig_XGB_{label}_{template_file_name}.png")
 
 final_eva = pd.concat(all_evaluations, ignore_index = True)
 final_eva = final_eva.sort_values(by = ["Algorithm", "Model"]).reset_index(drop = True)
@@ -583,16 +583,16 @@ final_eva = pd.concat(chunks, ignore_index = True).iloc[:-1]
 
 final_eva = final_eva.fillna("")
 
-eva_file_name = f"Eva_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.csv"
-imp_file_name = f"Imp_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.csv"
+eva_file_name = f"Eva_{template_file_name}.csv"
+imp_file_name = f"Imp_{template_file_name}.csv"
 
 final_eva.to_csv(f"./results/{eva_file_name}", index = False)
 final_imp.to_csv(f"./results/{imp_file_name}", index = False)
 
+model_1.to_csv(f"./models/Model1_{template_file_name}.csv", index = False)
+model_2.to_csv(f"./models/Model2_{template_file_name}.csv", index = False)
+model_3.to_csv(f"./models/Model3_{template_file_name}.csv", index = False)
+model_4.to_csv(f"./models/Model4_{template_file_name}.csv", index = False)
+
 print(f"\n{'=' * 5}", f"Evaluation Results", f"{'=' * 5}\n", sep = " ")
 print(final_eva)
-
-model_1.to_csv(f"./models/Model1_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.csv", index = False)
-model_2.to_csv(f"./models/Model2_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.csv", index = False)
-model_3.to_csv(f"./models/Model3_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.csv", index = False)
-model_4.to_csv(f"./models/Model4_{template_file_name}_{datetime.now().strftime('%m-%d_%H-%M-%S')}.csv", index = False)
