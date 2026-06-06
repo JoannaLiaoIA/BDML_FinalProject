@@ -16,8 +16,6 @@ __pycache__/
 backup_code/
 log/
 models/
-results/
-figures/
 *.csv
 test.py
 
