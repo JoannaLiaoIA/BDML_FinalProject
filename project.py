@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 from fredapi import Fred
 from datetime import datetime
 
-has_ESG = True
-is_large_dataset = False
+HAS_ESG = True
+IS_LARGE_DATASET = True
 TOP_N_FEATURES = 20
 
 # Global Variables & Configurations
-if is_large_dataset:
+if IS_LARGE_DATASET:
     START_DATE = "1998-01-01"
     END_DATE = "2025-12-31"
 
@@ -21,7 +21,7 @@ if is_large_dataset:
     HOLDOUT_START_DATE = "2025-01-01"
     HOLDOUT_END_DATE = "2025-12-31"
 
-    path_transaction = "./file/FinMind_transaction_2000_2026.csv"    
+    path_transaction = "./file/FinMind_transaction_2000_2026.parquet"    
 else:
     START_DATE = "2018-01-01"
     END_DATE = "2025-12-31"
@@ -32,7 +32,7 @@ else:
     HOLDOUT_START_DATE = "2025-07-01"
     HOLDOUT_END_DATE = "2025-12-31"
 
-    path_transaction = "./file/FinMind_transaction_2019_2025.csv"
+    path_transaction = "./file/FinMind_transaction_2019_2025.parquet"
 
 TWSE_BASE_URL = "https://openapi.twse.com.tw/v1"
 
@@ -40,12 +40,15 @@ myfn.set_top_n_features(n = TOP_N_FEATURES)
 # Set up training and holdout periods for the project using the function module. This will allow the functions to reference these periods when processing data and training models.
 myfn.set_training_periods(training_start_date = TRAIN_START_DATE, training_end_date = TRAIN_END_DATE)
 myfn.set_holdout_periods(holdout_start_date = HOLDOUT_START_DATE, holdout_end_date = HOLDOUT_END_DATE)
-myfn.set_esg_large_dataset_flags(esg_flag = has_ESG, large_dataset_flag = is_large_dataset)
+myfn.set_esg_large_dataset_flags(esg_flag = HAS_ESG, large_dataset_flag = IS_LARGE_DATASET)
 
 # Check Dictionary
 print("##### Configuration Check #####")
 for directory in ["./figures", "./results", "./models"]:
     os.makedirs(directory, exist_ok = True)
+    print(f"Directory '{directory}' is ready.")
+
+print("Configuration Check Complete.\n")
 
 # FRED API
 load_dotenv()
@@ -394,7 +397,7 @@ model_return_general = pd.merge(
     right_on = ["TargetYear", "TargetQuarter", "StockID"],
     how = "left"
 )
-if has_ESG:
+if HAS_ESG:
     model_return_general = pd.merge(
         model_return_general,
         df_esg_lag,
@@ -419,7 +422,7 @@ model_volatility_general = pd.merge(
     right_on = ["TargetYear", "TargetQuarter", "StockID"],
     how = "left"
 )
-if has_ESG:
+if HAS_ESG:
     model_volatility_general = pd.merge(
         model_volatility_general,
         df_esg_lag,
@@ -509,9 +512,9 @@ parts = TRAIN_START_DATE.split("-")
 train_start_year = model_1["Year"].min() if not model_1.empty else parts[0]
 train_end_year = model_1["Year"].max() if not model_1.empty else "2026"
 
-if has_ESG:
+if HAS_ESG:
     template_file_name = f"ESG_{train_start_year}_{train_end_year}"
-elif not has_ESG:
+elif not HAS_ESG:
     template_file_name = f"NoESG_{train_start_year}_{train_end_year}"
 
 models = {

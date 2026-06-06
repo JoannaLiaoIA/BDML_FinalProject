@@ -14,7 +14,6 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LinearRegression, Lasso, Ridge
 from sklearn.preprocessing import StandardScaler
 
-TOP_N_FEATURES = 50
 
 def set_training_periods(training_start_date: str, training_end_date: str) -> None:
     global TRAINING_START_YEAR, TRAINING_END_YEAR, TRAINING_START_QUARTER, TRAINING_END_QUARTER
@@ -42,9 +41,9 @@ def set_top_n_features(n: int = 50) -> None:
 
 
 def set_esg_large_dataset_flags(esg_flag: bool, large_dataset_flag: bool) -> None:
-    global has_ESG, is_large_dataset
-    has_ESG = esg_flag
-    is_large_dataset = large_dataset_flag
+    global HAS_ESG, IS_LARGE_DATASET
+    HAS_ESG = esg_flag
+    IS_LARGE_DATASET = large_dataset_flag
 
 def describe_data(df: pd.DataFrame, title: str, n: int = 3) -> None:
     """
@@ -504,11 +503,11 @@ def print_feature_importance(model_name: str, model, features: list, plot: bool 
         )
         
         # 使用 ax.set_* 來設定標題與標籤
-        if has_ESG and is_large_dataset:
+        if HAS_ESG and IS_LARGE_DATASET:
             ax.set_title(f"{model_name} - Top {TOP_N_FEATURES} Feature Importances (ESG & Large Dataset)", fontsize = 14, pad = 15)
-        elif has_ESG:
+        elif HAS_ESG:
             ax.set_title(f"{model_name} - Top {TOP_N_FEATURES} Feature Importances (ESG Dataset)", fontsize = 14, pad = 15)
-        elif is_large_dataset:
+        elif IS_LARGE_DATASET:
             ax.set_title(f"{model_name} - Top {TOP_N_FEATURES} Feature Importances (Large Dataset)", fontsize = 14, pad = 15)
         else:
             ax.set_title(f"{model_name} - Top {TOP_N_FEATURES} Feature Importances", fontsize = 14, pad = 15)

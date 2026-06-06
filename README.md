@@ -82,8 +82,8 @@ python3 project.py
 2. **Data Transformation:** It will convert daily/monthly/annual data into a unified quarterly format.
 3. **Feature Engineering:** Creates lagged variables, QoQ/YoY growth rates, and volatility metrics.
 4. **Modeling:** Trains and evaluates Random Forest, XGBoost, KNN, and Linear Regression models.
-5. **Output:** * Intermediate datasets used for training will be saved in the `./models/` directory (e.g., `Final_Model1.csv`).
-* Detailed model evaluation metrics (MSE, MAE, R-Squared) and feature importance rankings will be saved in the `./results/` directory with a timestamp.
+5. **Output:** Intermediate datasets used for training will be saved in the `./models/` directory (e.g., `Final_Model1.csv`).
+* Detailed model evaluation metrics (MSE, MAE, R-Squared, Adj-R-Squared) and feature importance rankings will be saved in the `./results/` directory with a timestamp.
 
 
 
@@ -94,8 +94,8 @@ You can customize the pipeline execution by modifying the global variables at th
 **1. Dataset Size, ESG Toggle, and Feature Count:**
 
 ```python
-is_large_dataset = True  # Set to False to use the smaller 2018-2025 dataset
-has_ESG = True           # Toggle ESG data inclusion
+IS_LARGE_DATASET = True  # Set to False to use the smaller 2018-2025 dataset
+HAS_ESG = True           # Toggle ESG data inclusion
 TOP_N_FEATURES = 20      # Number of top features to retain for model evaluation
 ```
 
@@ -103,7 +103,7 @@ TOP_N_FEATURES = 20      # Number of top features to retain for model evaluation
 Modify the date ranges for training and holdout periods within the conditional blocks:
 
 ```python
-if is_large_dataset:
+if IS_LARGE_DATASET:
     START_DATE = "1998-01-01"
     END_DATE = "2025-12-31"
     # Adjust TRAIN and HOLDOUT periods accordingly...
