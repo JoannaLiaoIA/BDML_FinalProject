@@ -53,7 +53,7 @@ source .venv/bin/activate
 With the virtual environment activated, install all necessary Python libraries:
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### 4. Setup FRED API Key (.env)
@@ -112,3 +112,14 @@ else:
     END_DATE = "2025-12-31"
     # Adjust TRAIN and HOLDOUT periods accordingly...
 ```
+
+## Update Requirements
+After installing new packages or updating existing ones, make sure to update your `requirements.txt` file:
+
+```
+pip3 freeze > requirements.txt
+```
+
+---
+## References
+- [Python Installation and Virtual Environment on macOS](https://medium.com/@jarebox1917/python-macos-安裝-python-詳細步驟-教學筆記-7f7c7e8cd5c7)
