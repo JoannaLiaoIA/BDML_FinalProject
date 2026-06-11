@@ -9,6 +9,7 @@ from datetime import datetime
 HAS_ESG = False
 IS_LARGE_DATASET = True
 TOP_N_FEATURES = 20
+IS_DEBUG = False
 
 # Global Variables & Configurations
 if IS_LARGE_DATASET:
@@ -37,18 +38,21 @@ else:
 TWSE_BASE_URL = "https://openapi.twse.com.tw/v1"
 
 myfn.set_top_n_features(n = TOP_N_FEATURES)
-# Set up training and holdout periods for the project using the function module. This will allow the functions to reference these periods when processing data and training models.
 myfn.set_training_periods(training_start_date = TRAIN_START_DATE, training_end_date = TRAIN_END_DATE)
 myfn.set_holdout_periods(holdout_start_date = HOLDOUT_START_DATE, holdout_end_date = HOLDOUT_END_DATE)
 myfn.set_esg_large_dataset_flags(esg_flag = HAS_ESG, large_dataset_flag = IS_LARGE_DATASET)
 
 # Check Dictionary
-print("##### Configuration Check #####")
+print("\n##### Configuration Check #####\n")
 for directory in ["./figures", "./results", "./models"]:
     os.makedirs(directory, exist_ok = True)
     print(f"Directory '{directory}' is ready.")
 
-print("Configuration Check Complete.\n")
+print(f"\nTarget Period: {START_DATE} to {END_DATE}")
+print(f"Training Period: {TRAIN_START_DATE} to {TRAIN_END_DATE}")
+print(f"Holdout Period: {HOLDOUT_START_DATE} to {HOLDOUT_END_DATE}")
+
+print("Configuration Check Complete.")
 
 # FRED API
 load_dotenv()
@@ -60,11 +64,7 @@ except Exception as e:
     print(f"Fail to load API key: {e}")
     FRED_API_KEY = ""
 
-print("##### Start Loading Data #####")
-
-print("\nTarget Period:", START_DATE, "to", END_DATE)
-print(f"Training Period: {TRAIN_START_DATE} to {TRAIN_END_DATE}")
-print(f"Holdout Period: {HOLDOUT_START_DATE} to {HOLDOUT_END_DATE}")
+print("\n##### Start Loading Data #####\n")
 
 # ==========================================
 # 4.1 Daily Transaction Data
@@ -81,8 +81,9 @@ df_daily_transaction["TradingMoney"] = pd.to_numeric(df_daily_transaction["Tradi
 df_daily_transaction["TradingTurnover"] = pd.to_numeric(df_daily_transaction["TradingTurnover"], errors = "coerce")
 df_daily_transaction["Spread"] = pd.to_numeric(df_daily_transaction["Spread"], errors = "coerce")
 df_daily_transaction = df_daily_transaction.dropna()
-df_daily_transaction = df_daily_transaction.sort_values(by = ["StockID", "Date"])
-myfn.describe_data(df_daily_transaction, "Daily Transaction Data")
+df_daily_transaction = df_daily_transaction.sort_values(by = ["StockID", "Date"], ascending = True)
+if IS_DEBUG:
+    myfn.describe_data(df_daily_transaction, "Daily Transaction Data")
 
 # ==========================================
 # 4.2 Company Category
@@ -92,7 +93,8 @@ df_company_category = myfn.get_file_from_drive("https://docs.google.com/spreadsh
 df_company_category = df_company_category.rename(columns = {"Code": "StockID"})
 df_company_category["StockID"] = df_company_category["StockID"].astype(str).str.strip()
 df_company_category = df_company_category[["StockID", "SubCategory"]].copy()
-myfn.describe_data(df_company_category, "Company Category Data")
+if IS_DEBUG:
+    myfn.describe_data(df_company_category, "Company Category Data")
 
 # ==========================================
 # 4.3 Tech Index (FRED & Github)
@@ -131,7 +133,8 @@ if not data_FnG.empty:
 df_tech_idx["Date"] = df_tech_idx["Date"].apply(myfn.convert_date)
 df_tech_idx = df_tech_idx.dropna()
 # df_tech_idx = df_tech_idx[df_tech_idx["Date"].between(START_DATE, END_DATE)]
-myfn.describe_data(df_tech_idx, "Technology Index Data")
+if IS_DEBUG:
+    myfn.describe_data(df_tech_idx, "Technology Index Data")
 
 # ==========================================
 # 4.4 Macro (Rediscount, CPI, Unemp)
@@ -139,16 +142,19 @@ myfn.describe_data(df_tech_idx, "Technology Index Data")
 
 df_rediscount_rate = myfn.get_file_from_drive("https://docs.google.com/spreadsheets/d/1qy3yNGYnj5vPCCCDd7XtzZ5wr2eDm-zw9ChmwgvuUAE/edit?gid=834914550#gid=834914550")
 df_rediscount_rate["Duration"] = df_rediscount_rate["Duration"].apply(myfn.convert_date)
-myfn.describe_data(df_rediscount_rate, "Rediscount Rate Data")
+if IS_DEBUG:
+    myfn.describe_data(df_rediscount_rate, "Rediscount Rate Data")
 
 df_cpi = myfn.get_file_from_drive("https://docs.google.com/spreadsheets/d/1CHlZ0XWqH0e1TlRbBu7t43tzK4Wu_pHcjIWwKB_Hv7g/edit?usp=sharing")
 df_cpi["Duration"] = df_cpi["Duration"].apply(myfn.convert_date)
 df_cpi = df_cpi[["Duration", "OverallIndex"]].copy()
-myfn.describe_data(df_cpi, "CPI Data")
+if IS_DEBUG:
+    myfn.describe_data(df_cpi, "CPI Data")
 
 df_unemployment_rate = myfn.get_file_from_drive("https://docs.google.com/spreadsheets/d/1OuZ-xTaNkT0nCx-eb0ABtThWDmaLYYRMTja9yJrqwYQ/edit?gid=606389627#gid=606389627")
 df_unemployment_rate["Duration"] = df_unemployment_rate["Duration"].apply(myfn.convert_date)
-myfn.describe_data(df_unemployment_rate, "Unemployment Rate Data")
+if IS_DEBUG:
+    myfn.describe_data(df_unemployment_rate, "Unemployment Rate Data")
 
 # ====================================================================================
 # 4.5 Financial Data (EPS, Revenue, ROE&ROA&GrossMargin)
@@ -158,15 +164,18 @@ df_eps = myfn.get_file_from_drive("https://drive.google.com/file/d/1TnuzhXPyIpJJ
 df_eps["Duration"] = df_eps["Duration"].apply(myfn.convert_date)
 df_eps = df_eps[["StockID", "Duration", "EPS"]].copy()
 df_eps = df_eps.sort_values(by = ["StockID", "Duration"])
-myfn.describe_data(df_eps, "EPS Data")
+if IS_DEBUG:
+    myfn.describe_data(df_eps, "EPS Data")
 
 df_revenue = myfn.get_file_from_drive("https://drive.google.com/file/d/11IFSInZP7sJmxYzxi8mPb6Akt4FoY5g0/view?usp=sharing")
 df_revenue["Duration"] = df_revenue["Duration"].apply(myfn.convert_date)
-myfn.describe_data(df_revenue, "Revenue Data")
+if IS_DEBUG:
+    myfn.describe_data(df_revenue, "Revenue Data")
 
 df_roe_roa_grossmargin = myfn.get_file_from_drive("https://docs.google.com/spreadsheets/d/1ngHwal_vAQ4IQeON8vT0D0IMkzz3cOseiDROuU4KqK4/edit?pli=1&gid=1778576688#gid=1778576688")
 df_roe_roa_grossmargin["Duration"] = df_roe_roa_grossmargin["Duration"].apply(myfn.convert_date)
-myfn.describe_data(df_roe_roa_grossmargin, "ROE, ROA, Gross Margin Data")
+if IS_DEBUG:
+    myfn.describe_data(df_roe_roa_grossmargin, "ROE, ROA, Gross Margin Data")
 
 # ==========================================
 # 4.6 ESG Data
@@ -189,7 +198,7 @@ esg_file_list = {
 df_esg = []
 
 for index, (esg_topic, file_url) in enumerate(esg_file_list.items()):
-    print(f"[{index + 1}/{len(esg_file_list)}] Processing: {esg_topic}")
+    print(f"\n[{index + 1}/{len(esg_file_list)}] Processing: {esg_topic}")
 
     df_temp = myfn.get_file_from_drive(file_url)
     df_temp = df_temp.rename(columns = {"Code": "StockID", "Category": "ESGCategory"})
@@ -218,17 +227,21 @@ df_esg = df_esg.pivot(
 df_esg.columns.name = None
 df_esg = df_esg.rename(columns = {"Duration": "Duration", "StockID": "StockID"})
 
-myfn.describe_data(df_esg, "ESG Data (Long Format)")
+if IS_DEBUG:
+    myfn.describe_data(df_esg, "ESG Data (Long Format)")
+print("ESG Data loaded and transformed successfully.")
 
 # ==========================================
 # 5. Convert to Quarterly
 # ==========================================
-print("##### Converting to Quarterly #####")
+print("\n##### Converting to Quarterly #####\n")
 
 # Annually -> Quarterly
 esg_category_cols = [col for col in df_esg.columns if col not in ["Duration", "StockID"]]
 df_esg_quarterly = myfn.annual_to_quarterly(df_esg, target_cols = esg_category_cols, method = "duplicate")
-myfn.describe_data(df_esg_quarterly, "ESG Data (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_esg_quarterly, "ESG Data (Quarterly)")
+print("ESG Data converted to quarterly successfully.")
 
 # Quarterly -> Quarterly
 df_eps_quarterly = myfn.quarter_to_quarterly(df_eps, target_cols = ["EPS"])
@@ -269,7 +282,8 @@ df_dv["QuarterlyVolatility"] = df_dv.groupby("StockID")["QuarterlyLogReturn"].ro
 df_dv["QuarterlyVolatility_Lag1"] = df_dv.groupby("StockID")["QuarterlyVolatility"].shift(1)
 df_dv["QuarterlyVolatility_Lag2"] = df_dv.groupby("StockID")["QuarterlyVolatility"].shift(2)
 df_dv["QuarterlyVolatility_Lag3"] = df_dv.groupby("StockID")["QuarterlyVolatility"].shift(3)
-myfn.describe_data(df_dv, "Dependent Variable Data (Quarterly)", n = 10)
+if IS_DEBUG:
+    myfn.describe_data(df_dv, "Dependent Variable Data (Quarterly)", n = 10)
 
 # IV: Operating Performance
 df_op_quarterly = pd.merge(
@@ -291,20 +305,31 @@ df_op_quarterly = pd.merge(
     how = "left"
 )
 df_op_quarterly.dropna(inplace = True)
-myfn.describe_data(df_op_quarterly, "Operating Performance Data (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_op_quarterly, "Operating Performance Data (Quarterly)")
+print("Operating Performance Data loaded and transformed successfully.")
+
 
 # IV: Transaction Data
 cols = ["Year", "Quarter", "StockID", "TradingVolume", "TradingMoney", "TradingTurnover", "Spread"]
 df_transaction_quarterly = df_transaction_quarterly[cols].copy()
-myfn.describe_data(df_transaction_quarterly, "Transaction Data (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_transaction_quarterly, "Transaction Data (Quarterly)")
+print("Transaction Data loaded and transformed successfully.")
+
 
 # IV: Technical Index
-myfn.describe_data(df_tech_idx_quarterly, "Technology Index Data (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_tech_idx_quarterly, "Technology Index Data (Quarterly)")
 
-df_tech_idx_features_QoQ = myfn.calculate_time_series_features(df_tech_idx_quarterly, target_cols = ["VIX", "SOX", "DJIA", "IXIC", "SP500", "FnG"], method = "QoQ")
-myfn.describe_data(df_tech_idx_features_QoQ, "Technology Index Features (QoQ) (Quarterly)")
+df_tech_idx_features_QoQ = myfn.calculate_time_series_features(df_tech_idx_quarterly, target_cols = 
+["VIX", "SOX", "DJIA", "IXIC", "SP500", "FnG"], method = "QoQ")
+if IS_DEBUG:
+    myfn.describe_data(df_tech_idx_features_QoQ, "Technology Index Features (QoQ) (Quarterly)")
 df_tech_idx_features_YoY = myfn.calculate_time_series_features(df_tech_idx_quarterly, target_cols = ["VIX", "SOX", "DJIA", "IXIC", "SP500", "FnG"], method = "YoY")
-myfn.describe_data(df_tech_idx_features_YoY, "Technology Index Features (YoY) (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_tech_idx_features_YoY, "Technology Index Features (YoY) (Quarterly)")
+print("Technology Index features calculated successfully.")
 
 
 # IV: Market Index
@@ -321,19 +346,23 @@ df_market_idx_quarterly = pd.merge(
     right_on = ["Year", "Quarter"]
 )
 df_market_idx_quarterly.dropna(inplace = True)
-myfn.describe_data(df_market_idx_quarterly, "Market Index Data (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_market_idx_quarterly, "Market Index Data (Quarterly)")
 
 df_market_idx_features_QoQ = myfn.calculate_time_series_features(df_market_idx_quarterly, target_cols = ["OverallIndex", "TotalUnempPct", "RediscountRate"], method = "QoQ")
-myfn.describe_data(df_market_idx_features_QoQ, "Market Index Features (QoQ) (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_market_idx_features_QoQ, "Market Index Features (QoQ) (Quarterly)")
 df_market_idx_features_YoY = myfn.calculate_time_series_features(df_market_idx_quarterly, target_cols = ["OverallIndex", "TotalUnempPct", "RediscountRate"], method = "YoY")
-myfn.describe_data(df_market_idx_features_YoY, "Market Index Features (YoY) (Quarterly)")
+if IS_DEBUG:
+    myfn.describe_data(df_market_idx_features_YoY, "Market Index Features (YoY) (Quarterly)")
+print("Market Index features calculated successfully.")
 
 
 # ==========================================
 # Modeling Dataset
 # ==========================================
 
-print("##### Modeling Datasets #####")
+print("\n##### Modeling Datasets #####\n")
 
 df_op_lag = df_op_quarterly.copy()
 df_op_lag["TargetYear"] = np.where(df_op_lag["Quarter"] == 4, df_op_lag["Year"] + 1, df_op_lag["Year"])
@@ -382,6 +411,11 @@ df_tech_YoY_cur = df_tech_YoY_cur[keep_tech_cols]
 # Merge all features to create the final modeling dataset
 model_return_general = df_dv[["StockID", "Year", "Quarter", "QuarterlyReturn", "QuarterlyReturn_Lag1", "QuarterlyReturn_Lag2", "QuarterlyReturn_Lag3"]].copy()
 model_volatility_general = df_dv[["StockID", "Year", "Quarter", "QuarterlyVolatility", "QuarterlyVolatility_Lag1", "QuarterlyVolatility_Lag2", "QuarterlyVolatility_Lag3"]].copy()
+
+# Convert quarter to dummy variables
+# encoder = OneHotEncoder(drop = 'first', sparse_output = False)
+# model_return_general["Quarter"] = encoder.fit_transform(model_return_general[["Quarter"]])
+# model_volatility_general["Quarter"] = encoder.fit_transform(model_volatility_general[["Quarter"]])
 
 # Return
 model_return_general = pd.merge(
@@ -450,7 +484,6 @@ model_1 = pd.merge(
     )
 model_1 = myfn.clean_model(model_1)
 print(f"Model 1 Created Successfully!!!!!")
-print(f"Dataset shape: {model_1.shape}")
 myfn.describe_data(model_1, "Model 1")
 
 model_2 = pd.merge(
@@ -507,92 +540,92 @@ myfn.describe_data(model_4, "Model 4")
 # ====================================================================================
 # Mechine Learning Modeling
 # ====================================================================================
-print("##### Start Modeling #####")
-parts = TRAIN_START_DATE.split("-")
-train_start_year = model_1["Year"].min() if not model_1.empty else parts[0]
-train_end_year = model_1["Year"].max() if not model_1.empty else "2026"
+# print("\n##### Start Modeling #####\n")
+# parts = TRAIN_START_DATE.split("-")
+# train_start_year = model_1["Year"].min() if not model_1.empty else parts[0]
+# train_end_year = model_1["Year"].max() if not model_1.empty else "2026"
 
-if HAS_ESG:
-    template_file_name = f"ESG_{train_start_year}_{train_end_year}"
-elif not HAS_ESG:
-    template_file_name = f"NoESG_{train_start_year}_{train_end_year}"
+# if HAS_ESG:
+#     template_file_name = f"ESG_{train_start_year}_{train_end_year}"
+# elif not HAS_ESG:
+#     template_file_name = f"NoESG_{train_start_year}_{train_end_year}"
 
-models = {
-    "Model 1": model_1,
-    "Model 2": model_2,
-    "Model 3": model_3,
-    "Model 4": model_4
-}
+# models = {
+#     "Model 1": model_1,
+#     "Model 2": model_2,
+#     "Model 3": model_3,
+#     "Model 4": model_4
+# }
 
-all_evaluations = []
-all_importances = []
+# all_evaluations = []
+# all_importances = []
 
-for label, df in models.items():
-    eva_rf, imp_rf, fig_rf = myfn.run_random_forest(df, label, n_estimators = 100, max_depth = 5, min_samples_leaf = 10)
-    eva_xgb, imp_xgb, fig_xgb = myfn.run_xgboost(df, label, n_estimators = 100, max_depth = 5, learning_rate = 0.05)
-    eva_knn = myfn.run_knn(df, label, n_neighbors = 5, weights = "distance")
-    eva_linear_dict = myfn.run_linear_regressions(df, label)             # 接收包含 OLS, Lasso, Ridge 的字典並拆解
-    eva_ols = eva_linear_dict["OLS"]
-    eva_lasso = eva_linear_dict["Lasso"]
-    eva_ridge = eva_linear_dict["Ridge"]
+# for label, df in models.items():
+#     eva_rf, imp_rf, fig_rf = myfn.run_random_forest(df, label, n_estimators = 100, max_depth = 5, min_samples_leaf = 10)
+#     eva_xgb, imp_xgb, fig_xgb = myfn.run_xgboost(df, label, n_estimators = 100, max_depth = 5, learning_rate = 0.05)
+#     eva_knn = myfn.run_knn(df, label, n_neighbors = 5, weights = "distance")
+#     eva_linear_dict = myfn.run_linear_regressions(df, label)             # 接收包含 OLS, Lasso, Ridge 的字典並拆解
+#     eva_ols = eva_linear_dict["OLS"]
+#     eva_lasso = eva_linear_dict["Lasso"]
+#     eva_ridge = eva_linear_dict["Ridge"]
     
-    eva_cur = pd.DataFrame({
-        "Model": [label] * 6,
-        "Algorithm": ["Random Forest", "XGBoost", "KNN", "LR - OLS", "LR - Lasso", "LR - Ridge"],
+#     eva_cur = pd.DataFrame({
+#         "Model": [label] * 6,
+#         "Algorithm": ["Random Forest", "XGBoost", "KNN", "LR - OLS", "LR - Lasso", "LR - Ridge"],
         
-        # Training
-        "Training_MSE": [eva_rf["MSE"].iloc[0], eva_xgb["MSE"].iloc[0], eva_knn["MSE"].iloc[0], eva_ols["MSE"].iloc[0], eva_lasso["MSE"].iloc[0], eva_ridge["MSE"].iloc[0]],
-        "Training_MAE": [eva_rf["MAE"].iloc[0], eva_xgb["MAE"].iloc[0], eva_knn["MAE"].iloc[0], eva_ols["MAE"].iloc[0], eva_lasso["MAE"].iloc[0], eva_ridge["MAE"].iloc[0]],
-        "Training_R-Squared": [eva_rf["R-Squared"].iloc[0], eva_xgb["R-Squared"].iloc[0], eva_knn["R-Squared"].iloc[0], eva_ols["R-Squared"].iloc[0], eva_lasso["R-Squared"].iloc[0], eva_ridge["R-Squared"].iloc[0]],
-        "Training_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[0], eva_xgb["Adj-R-Squared"].iloc[0], eva_knn["Adj-R-Squared"].iloc[0], eva_ols["Adj-R-Squared"].iloc[0], eva_lasso["Adj-R-Squared"].iloc[0], eva_ridge["Adj-R-Squared"].iloc[0]],
+#         # Training
+#         "Training_MSE": [eva_rf["MSE"].iloc[0], eva_xgb["MSE"].iloc[0], eva_knn["MSE"].iloc[0], eva_ols["MSE"].iloc[0], eva_lasso["MSE"].iloc[0], eva_ridge["MSE"].iloc[0]],
+#         "Training_MAE": [eva_rf["MAE"].iloc[0], eva_xgb["MAE"].iloc[0], eva_knn["MAE"].iloc[0], eva_ols["MAE"].iloc[0], eva_lasso["MAE"].iloc[0], eva_ridge["MAE"].iloc[0]],
+#         "Training_R-Squared": [eva_rf["R-Squared"].iloc[0], eva_xgb["R-Squared"].iloc[0], eva_knn["R-Squared"].iloc[0], eva_ols["R-Squared"].iloc[0], eva_lasso["R-Squared"].iloc[0], eva_ridge["R-Squared"].iloc[0]],
+#         "Training_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[0], eva_xgb["Adj-R-Squared"].iloc[0], eva_knn["Adj-R-Squared"].iloc[0], eva_ols["Adj-R-Squared"].iloc[0], eva_lasso["Adj-R-Squared"].iloc[0], eva_ridge["Adj-R-Squared"].iloc[0]],
 
-        # Holdout
-        "Holdout_MSE": [eva_rf["MSE"].iloc[1], eva_xgb["MSE"].iloc[1], eva_knn["MSE"].iloc[1], eva_ols["MSE"].iloc[1], eva_lasso["MSE"].iloc[1], eva_ridge["MSE"].iloc[1]],
-        "Holdout_MAE": [eva_rf["MAE"].iloc[1], eva_xgb["MAE"].iloc[1], eva_knn["MAE"].iloc[1], eva_ols["MAE"].iloc[1], eva_lasso["MAE"].iloc[1], eva_ridge["MAE"].iloc[1]],
-        "Holdout_R-Squared": [eva_rf["R-Squared"].iloc[1], eva_xgb["R-Squared"].iloc[1], eva_knn["R-Squared"].iloc[1], eva_ols["R-Squared"].iloc[1], eva_lasso["R-Squared"].iloc[1], eva_ridge["R-Squared"].iloc[1]],
-        "Holdout_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[1], eva_xgb["Adj-R-Squared"].iloc[1], eva_knn["Adj-R-Squared"].iloc[1], eva_ols["Adj-R-Squared"].iloc[1], eva_lasso["Adj-R-Squared"].iloc[1], eva_ridge["Adj-R-Squared"].iloc[1]]
-    })
+#         # Holdout
+#         "Holdout_MSE": [eva_rf["MSE"].iloc[1], eva_xgb["MSE"].iloc[1], eva_knn["MSE"].iloc[1], eva_ols["MSE"].iloc[1], eva_lasso["MSE"].iloc[1], eva_ridge["MSE"].iloc[1]],
+#         "Holdout_MAE": [eva_rf["MAE"].iloc[1], eva_xgb["MAE"].iloc[1], eva_knn["MAE"].iloc[1], eva_ols["MAE"].iloc[1], eva_lasso["MAE"].iloc[1], eva_ridge["MAE"].iloc[1]],
+#         "Holdout_R-Squared": [eva_rf["R-Squared"].iloc[1], eva_xgb["R-Squared"].iloc[1], eva_knn["R-Squared"].iloc[1], eva_ols["R-Squared"].iloc[1], eva_lasso["R-Squared"].iloc[1], eva_ridge["R-Squared"].iloc[1]],
+#         "Holdout_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[1], eva_xgb["Adj-R-Squared"].iloc[1], eva_knn["Adj-R-Squared"].iloc[1], eva_ols["Adj-R-Squared"].iloc[1], eva_lasso["Adj-R-Squared"].iloc[1], eva_ridge["Adj-R-Squared"].iloc[1]]
+#     })
 
-    imp_cur = pd.DataFrame({
-        "Model": [label] * (len(imp_rf) + len(imp_xgb)),
-        "Algorithm": ["Random Forest"] * len(imp_rf) + ["XGBoost"] * len(imp_xgb),
-        "Rank": list(imp_rf["Rank"]) + list(imp_xgb["Rank"]),
-        "Feature": list(imp_rf["Feature"]) + list(imp_xgb["Feature"]),
-        "Importance": list(imp_rf["Importance"]) + list(imp_xgb["Importance"])
-    })
+#     imp_cur = pd.DataFrame({
+#         "Model": [label] * (len(imp_rf) + len(imp_xgb)),
+#         "Algorithm": ["Random Forest"] * len(imp_rf) + ["XGBoost"] * len(imp_xgb),
+#         "Rank": list(imp_rf["Rank"]) + list(imp_xgb["Rank"]),
+#         "Feature": list(imp_rf["Feature"]) + list(imp_xgb["Feature"]),
+#         "Importance": list(imp_rf["Importance"]) + list(imp_xgb["Importance"])
+#     })
     
-    all_evaluations.append(eva_cur)
-    all_importances.append(imp_cur)
+#     all_evaluations.append(eva_cur)
+#     all_importances.append(imp_cur)
 
-    fig_rf.savefig(f"./figures/Imp_Fig_RF_{label}_{template_file_name}.png")
-    fig_xgb.savefig(f"./figures/Imp_Fig_XGB_{label}_{template_file_name}.png")
+#     fig_rf.savefig(f"./figures/Imp_Fig_RF_{label}_{template_file_name}.png")
+#     fig_xgb.savefig(f"./figures/Imp_Fig_XGB_{label}_{template_file_name}.png")
 
-final_eva = pd.concat(all_evaluations, ignore_index = True)
-final_eva = final_eva.sort_values(by = ["Algorithm", "Model"]).reset_index(drop = True)
-final_imp = pd.concat(all_importances, ignore_index = True)
-final_imp = final_imp.sort_values(by = ["Algorithm", "Model", "Rank"]).reset_index(drop = True)
+# final_eva = pd.concat(all_evaluations, ignore_index = True)
+# final_eva = final_eva.sort_values(by = ["Algorithm", "Model"]).reset_index(drop = True)
+# final_imp = pd.concat(all_importances, ignore_index = True)
+# final_imp = final_imp.sort_values(by = ["Algorithm", "Model", "Rank"]).reset_index(drop = True)
 
-# Insert an empty row between different algorithms for better readability
-empty_row = pd.DataFrame([[None] * len(final_eva.columns)], columns = final_eva.columns)
-chunks = []
-for _, group in final_eva.groupby("Algorithm", sort = False):
-    chunks.append(group)
-    chunks.append(empty_row)
+# # Insert an empty row between different algorithms for better readability
+# empty_row = pd.DataFrame([[None] * len(final_eva.columns)], columns = final_eva.columns)
+# chunks = []
+# for _, group in final_eva.groupby("Algorithm", sort = False):
+#     chunks.append(group)
+#     chunks.append(empty_row)
 
-final_eva = pd.concat(chunks, ignore_index = True).iloc[:-1]
+# final_eva = pd.concat(chunks, ignore_index = True).iloc[:-1]
 
-final_eva = final_eva.fillna("")
+# final_eva = final_eva.fillna("")
 
-eva_file_name = f"Eva_{template_file_name}.csv"
-imp_file_name = f"Imp_{template_file_name}.csv"
+# eva_file_name = f"Eva_{template_file_name}.csv"
+# imp_file_name = f"Imp_{template_file_name}.csv"
 
-final_eva.to_csv(f"./results/{eva_file_name}", index = False)
-final_imp.to_csv(f"./results/{imp_file_name}", index = False)
+# final_eva.to_csv(f"./results/{eva_file_name}", index = False)
+# final_imp.to_csv(f"./results/{imp_file_name}", index = False)
 
-model_1.to_csv(f"./models/Model1_{template_file_name}.csv", index = False)
-model_2.to_csv(f"./models/Model2_{template_file_name}.csv", index = False)
-model_3.to_csv(f"./models/Model3_{template_file_name}.csv", index = False)
-model_4.to_csv(f"./models/Model4_{template_file_name}.csv", index = False)
+# model_1.to_csv(f"./models/Model1_{template_file_name}.csv", index = False)
+# model_2.to_csv(f"./models/Model2_{template_file_name}.csv", index = False)
+# model_3.to_csv(f"./models/Model3_{template_file_name}.csv", index = False)
+# model_4.to_csv(f"./models/Model4_{template_file_name}.csv", index = False)
 
-print(f"\n{'=' * 5}", f"Evaluation Results", f"{'=' * 5}\n", sep = " ")
-print(final_eva)
+# print(f"\n{'=' * 5}", f"Evaluation Results", f"{'=' * 5}\n", sep = " ")
+# print(final_eva)

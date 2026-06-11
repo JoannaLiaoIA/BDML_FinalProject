@@ -1,5 +1,6 @@
 import re
 import io
+import joblib
 import requests
 import numpy as np
 import pandas as pd
@@ -12,8 +13,13 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LinearRegression, Lasso, Ridge
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
+
+# TODO: Set dummy variables for ESG and Large Dataset, and include them in the feature importance analysis and evaluation printouts.
+# TODO: Find some variables that can capture categorical information such as industry, and try encoding them with one-hot encoding or target encoding to see if they can improve the model performance.
+# TODO: Try neural models
+# TODO: Find older tech index transaction data
 
 def set_training_periods(training_start_date: str, training_end_date: str) -> None:
     global TRAINING_START_YEAR, TRAINING_END_YEAR, TRAINING_START_QUARTER, TRAINING_END_QUARTER
@@ -140,44 +146,6 @@ def convert_date(date_str: str):
     return "Invalid Date Format"
 
 
-# def save_to_sheets(df: pd.DataFrame, url: str, worksheet_name: str) -> None:
-    # df_clean = df.copy()
-    # df_clean = df_clean.replace([np.inf, -np.inf], np.nan)
-    # df_clean = df_clean.fillna("")
-    # df_clean = df_clean.astype(str)
-    # df_clean = df_clean.replace(["nan", "NaT", "None", "<NA>"], "")
-
-    # try:
-    #     sh = gc.open_by_url(url)
-    # except NameError:
-    #     print("> 錯誤：找不到 gc (Google Client) 通行證。")
-    #     return
-
-    # try:
-    #     ws = sh.worksheet(worksheet_name)
-    #     sh.del_worksheet(ws)
-    #     print(f"> 刪除舊有工作表: "{worksheet_name}"")
-    # except gspread.exceptions.WorksheetNotFound:
-    #     pass
-
-    # new_ws = sh.add_worksheet(
-    #     title=worksheet_name,
-    #     rows=str(len(df_clean) + 1),
-    #     cols=str(len(df_clean.columns))
-    # )
-
-    # header = df_clean.columns.tolist()
-    # rows = df_clean.values.tolist()
-    # all_data = [header] + rows
-
-    # new_ws.update(
-    #     range_name="A1",
-    #     values=all_data,
-    #     value_input_option="USER_ENTERED"
-    # )
-    # print(f"> 成功上傳至 \"{worksheet_name}\"，共包含 {len(df)} 筆資料")
-
-
 def get_file_from_drive(file_url: str) -> pd.DataFrame:
     """
     Download a CSV file from Google Drive or Google Sheets and return it as a DataFrame.
@@ -190,7 +158,7 @@ def get_file_from_drive(file_url: str) -> pd.DataFrame:
     is_drive_file = False
 
     if "docs.google.com/spreadsheets" in file_url:
-        print("Detected Google Sheets. Converting to CSV export URL...")
+        print("\nDetected Google Sheets. Converting to CSV export URL...")
         if any(keyword in file_url for keyword in ["/edit", "/view", "htmlview"]):
             target_url = re.sub(r"/(edit|view|htmlview).*$", "/export?format=csv", file_url)
         elif "export" in file_url and "format=csv" not in file_url:
@@ -199,7 +167,7 @@ def get_file_from_drive(file_url: str) -> pd.DataFrame:
                 target_url += "&format=csv"
 
     elif "drive.google.com/file" in file_url:
-        print("Detected Google Drive CSV file. Preparing to fetch...")
+        print("\nDetected Google Drive CSV file. Preparing to fetch...")
         file_id_match = re.search(r"/file/d/([a-zA-Z0-9_-]+)", file_url)
         if file_id_match:
             file_id = file_id_match.group(1)
@@ -210,7 +178,7 @@ def get_file_from_drive(file_url: str) -> pd.DataFrame:
             raise ValueError("Failed to parse Google Drive file ID")
 
     else:
-        print("Detected standard CSV URL...")
+        print("\nDetected standard CSV URL...")
 
     print(f"Fetching data from {target_url}...")
     
@@ -411,7 +379,7 @@ def clean_model(model: pd.DataFrame) -> pd.DataFrame:
     out = model.copy()
 
     out.replace([np.inf, -np.inf], np.nan, inplace = True)
-    print(out.isna().sum().sort_values(ascending = False).head(20))
+    # print(out.isna().sum().sort_values(ascending = False).head(20))
     
     cols_to_drop = [c for c in model.columns if "Target" in c]
     out = out.drop(columns = cols_to_drop)
@@ -419,10 +387,6 @@ def clean_model(model: pd.DataFrame) -> pd.DataFrame:
     
     return out
 
-
-import numpy as np
-import pandas as pd
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 def print_evaluation(model_name: str, dataset_name: str, y_true: np.ndarray, y_pred: np.ndarray, p: int) -> pd.DataFrame:
     mse = mean_squared_error(y_true, y_pred)
@@ -434,7 +398,7 @@ def print_evaluation(model_name: str, dataset_name: str, y_true: np.ndarray, y_p
     if n > p + 1:
         adj_r2 = 1 - ((1 - r2) * (n - 1)) / (n - p - 1)
     else:
-        adj_r2 = np.nan # 或做其他預設處理
+        adj_r2 = np.nan
 
     title = f"{model_name} - {dataset_name} - {TRAINING_START_YEAR}Q{TRAINING_START_QUARTER} to {HOLDOUT_END_YEAR}Q{HOLDOUT_END_QUARTER}"
 
@@ -465,10 +429,9 @@ def print_feature_importance(model_name: str, model, features: list, plot: bool 
     
     # 2. 準備 DataFrame 所需的欄位資料
     ranks = list(range(1, len(top_features) + 1))
-    cumulative_importances = np.cumsum(top_importances) # 一次性計算累計重要度
+    cumulative_importances = np.cumsum(top_importances)
 
     # 3. Terminal 列印輸出
-    # 這裡假設您的環境中已經有定義 TRAINING_START_YEAR 等全域變數
     title_str = f"| {model_name} - Top {TOP_N_FEATURES} Feature Importances - {TRAINING_START_YEAR}Q{TRAINING_START_QUARTER} to {HOLDOUT_END_YEAR}Q{HOLDOUT_END_QUARTER} |"
     cnt = len(title_str)
     print("+", "-" * (cnt - 2), "+", sep="")
@@ -480,7 +443,7 @@ def print_feature_importance(model_name: str, model, features: list, plot: bool 
     print("\n")
     
     df_importance = pd.DataFrame({
-        "Model": model_name,  # 改回乾淨的 model_name，方便後續合併或 groupby
+        "Model": model_name,
         "Rank": ranks,
         "Feature": top_features,
         "Importance": top_importances,
@@ -525,10 +488,11 @@ def run_random_forest(model: pd.DataFrame, label: str, n_estimators: int = 200, 
 
     print(f"\n{'=' * 5}", f"Running Random Forest for {label}", f"{'=' * 5}\n", sep = " ")
     rf = model.dropna().reset_index(drop = True)
+
     if "QuarterlyReturn" in rf.columns:
-        exclude_cols = ["StockID", "Year", "Quarter", "TargetYear", "TargetQuarter", "QuarterlyReturn", "SubCategory_last1"]
+        exclude_cols = ["StockID", "Year", "TargetYear", "TargetQuarter", "QuarterlyReturn", "SubCategory_last1"]
     elif "QuarterlyVolatility" in rf.columns:
-        exclude_cols = ["StockID", "Year", "Quarter", "TargetYear", "TargetQuarter", "QuarterlyVolatility", "SubCategory_last1"]
+        exclude_cols = ["StockID", "Year", "TargetYear", "TargetQuarter", "QuarterlyVolatility", "SubCategory_last1"]
     features = [col for col in rf.columns if col not in exclude_cols]
 
     training_mask = (rf["Year"] >= TRAINING_START_YEAR) & ((rf["Year"] < TRAINING_END_YEAR) | ((rf["Year"] == TRAINING_END_YEAR) & (rf["Quarter"] <= TRAINING_END_QUARTER)))
@@ -548,7 +512,6 @@ def run_random_forest(model: pd.DataFrame, label: str, n_estimators: int = 200, 
     print(f"[RF {label}] Holdout Set: X_test {X_test.shape}, y_test {y_test.shape}")
 
     # 4. 建立與訓練隨機森林模型
-    # 參數建議：先限制 max_depth 避免嚴重過擬合，n_jobs=-1 可以讓 CPU 全速運轉
     result = RandomForestRegressor(
         n_estimators = n_estimators,            # 樹的數量
         max_depth = max_depth,
@@ -613,6 +576,16 @@ def run_xgboost(model: pd.DataFrame, label: str, n_estimators: int = 200, max_de
 
     print(f"[XGB {label}] Training...")
     result.fit(X_train, y_train)
+
+    joblib.dump(
+        result,
+        f"./models/XGB_{label}_Model.pkl"
+    )
+
+    joblib.dump(
+    list(X_train.columns),
+    f"./models/xgb_{label}_columns.pkl"
+)
 
     print(f"[XGB {label}] Predicting...")
     y_pred_train = result.predict(X_train)
