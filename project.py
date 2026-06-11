@@ -5,6 +5,7 @@ import function as myfn
 from dotenv import load_dotenv
 from fredapi import Fred
 from datetime import datetime
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
 HAS_ESG = False
 IS_LARGE_DATASET = True
@@ -52,7 +53,7 @@ print(f"\nTarget Period: {START_DATE} to {END_DATE}")
 print(f"Training Period: {TRAIN_START_DATE} to {TRAIN_END_DATE}")
 print(f"Holdout Period: {HOLDOUT_START_DATE} to {HOLDOUT_END_DATE}")
 
-print("Configuration Check Complete.")
+print("\nConfiguration Check Complete.")
 
 # FRED API
 load_dotenv()
@@ -79,11 +80,15 @@ df_daily_transaction["ClosingPrice"] = pd.to_numeric(df_daily_transaction["Closi
 df_daily_transaction["TradingVolume"] = pd.to_numeric(df_daily_transaction["TradingVolume"], errors = "coerce")
 df_daily_transaction["TradingMoney"] = pd.to_numeric(df_daily_transaction["TradingMoney"], errors = "coerce")
 df_daily_transaction["TradingTurnover"] = pd.to_numeric(df_daily_transaction["TradingTurnover"], errors = "coerce")
-df_daily_transaction["Spread"] = pd.to_numeric(df_daily_transaction["Spread"], errors = "coerce")
+# Spread 修改為 (MaxPrice - MinPrice) / MinPrice
+df_daily_transaction["MaxPrice"] = pd.to_numeric(df_daily_transaction["MaxPrice"], errors = "coerce")
+df_daily_transaction["MinPrice"] = pd.to_numeric(df_daily_transaction["MinPrice"], errors = "coerce")
+df_daily_transaction["Spread"] = (df_daily_transaction["MaxPrice"] - df_daily_transaction["MinPrice"]) / df_daily_transaction["MinPrice"]
 df_daily_transaction = df_daily_transaction.dropna()
 df_daily_transaction = df_daily_transaction.sort_values(by = ["StockID", "Date"], ascending = True)
 if IS_DEBUG:
     myfn.describe_data(df_daily_transaction, "Daily Transaction Data")
+myfn.describe_data(df_daily_transaction, "Daily Transaction Data")
 
 # ==========================================
 # 4.2 Company Category
@@ -241,17 +246,19 @@ esg_category_cols = [col for col in df_esg.columns if col not in ["Duration", "S
 df_esg_quarterly = myfn.annual_to_quarterly(df_esg, target_cols = esg_category_cols, method = "duplicate")
 if IS_DEBUG:
     myfn.describe_data(df_esg_quarterly, "ESG Data (Quarterly)")
-print("ESG Data converted to quarterly successfully.")
+print("Annually data converted to quarterly successfully.")
 
 # Quarterly -> Quarterly
 df_eps_quarterly = myfn.quarter_to_quarterly(df_eps, target_cols = ["EPS"])
 df_revenue_quarterly = myfn.quarter_to_quarterly(df_revenue, target_cols = ["Last3mCumulativeRevenue", "Last3mCumulativeRevenueGrowthRate"])
 df_roe_roa_grossmargin_quarterly = myfn.quarter_to_quarterly(df_roe_roa_grossmargin, target_cols = ["ROE", "ROA", "GrossMargin"])
+print("Quarterly data converted successfully.")
 
 # Monthly -> Quarterly
 df_cpi_quarterly = myfn.month_to_quarterly(df_cpi, target_cols = ["OverallIndex"])
 df_unemployment_rate_quarterly = myfn.month_to_quarterly(df_unemployment_rate, target_cols = ["TotalUnempPct"])
 df_rediscount_rate_quarterly = myfn.month_to_quarterly(df_rediscount_rate, target_cols = ["RediscountRate"])
+print("Monthly data converted to quarterly successfully.")
 
 # Daily -> Quarterly
 df_daily_transaction_tmp_sum = myfn.daily_to_quarterly(df_daily_transaction, target_cols = ["TradingVolume", "TradingMoney", "TradingTurnover"], method = "sum")
@@ -264,6 +271,7 @@ df_transaction_quarterly = pd.merge(
     how = "inner"
 )
 df_tech_idx_quarterly = myfn.daily_to_quarterly(df_tech_idx, target_cols = ["VIX", "SOX", "DJIA", "IXIC", "SP500", "FnG"], method = "mean")
+print("Daily data converted to quarterly successfully.")
 
 # ====================================================================================
 # Split, Merge and Extract Time Series Features
@@ -284,6 +292,7 @@ df_dv["QuarterlyVolatility_Lag2"] = df_dv.groupby("StockID")["QuarterlyVolatilit
 df_dv["QuarterlyVolatility_Lag3"] = df_dv.groupby("StockID")["QuarterlyVolatility"].shift(3)
 if IS_DEBUG:
     myfn.describe_data(df_dv, "Dependent Variable Data (Quarterly)", n = 10)
+print("Dependent variable calculated successfully.")
 
 # IV: Operating Performance
 df_op_quarterly = pd.merge(
@@ -307,6 +316,7 @@ df_op_quarterly = pd.merge(
 df_op_quarterly.dropna(inplace = True)
 if IS_DEBUG:
     myfn.describe_data(df_op_quarterly, "Operating Performance Data (Quarterly)")
+
 print("Operating Performance Data loaded and transformed successfully.")
 
 
@@ -315,6 +325,7 @@ cols = ["Year", "Quarter", "StockID", "TradingVolume", "TradingMoney", "TradingT
 df_transaction_quarterly = df_transaction_quarterly[cols].copy()
 if IS_DEBUG:
     myfn.describe_data(df_transaction_quarterly, "Transaction Data (Quarterly)")
+
 print("Transaction Data loaded and transformed successfully.")
 
 
@@ -329,6 +340,7 @@ if IS_DEBUG:
 df_tech_idx_features_YoY = myfn.calculate_time_series_features(df_tech_idx_quarterly, target_cols = ["VIX", "SOX", "DJIA", "IXIC", "SP500", "FnG"], method = "YoY")
 if IS_DEBUG:
     myfn.describe_data(df_tech_idx_features_YoY, "Technology Index Features (YoY) (Quarterly)")
+
 print("Technology Index features calculated successfully.")
 
 
@@ -412,10 +424,16 @@ df_tech_YoY_cur = df_tech_YoY_cur[keep_tech_cols]
 model_return_general = df_dv[["StockID", "Year", "Quarter", "QuarterlyReturn", "QuarterlyReturn_Lag1", "QuarterlyReturn_Lag2", "QuarterlyReturn_Lag3"]].copy()
 model_volatility_general = df_dv[["StockID", "Year", "Quarter", "QuarterlyVolatility", "QuarterlyVolatility_Lag1", "QuarterlyVolatility_Lag2", "QuarterlyVolatility_Lag3"]].copy()
 
-# Convert quarter to dummy variables
-# encoder = OneHotEncoder(drop = 'first', sparse_output = False)
-# model_return_general["Quarter"] = encoder.fit_transform(model_return_general[["Quarter"]])
-# model_volatility_general["Quarter"] = encoder.fit_transform(model_volatility_general[["Quarter"]])
+
+# # 1. 單獨針對 Quarter 欄位做 dummy，並加上前綴字 (prefix)
+# quarter_dummies_ret = pd.get_dummies(model_return_general["Quarter"], prefix = "Quarter", drop_first=True, dtype=int)
+# model_return_general = model_return_general.join(quarter_dummies_ret)
+
+# quarter_dummies_vol = pd.get_dummies(model_volatility_general["Quarter"], prefix = "Quarter", drop_first=True, dtype=int)
+# model_volatility_general = model_volatility_general.join(quarter_dummies_vol)
+
+# myfn.describe_data(model_return_general, "Model Return General")
+# myfn.describe_data(model_volatility_general, "Model Volatility General")
 
 # Return
 model_return_general = pd.merge(
@@ -540,92 +558,92 @@ myfn.describe_data(model_4, "Model 4")
 # ====================================================================================
 # Mechine Learning Modeling
 # ====================================================================================
-# print("\n##### Start Modeling #####\n")
-# parts = TRAIN_START_DATE.split("-")
-# train_start_year = model_1["Year"].min() if not model_1.empty else parts[0]
-# train_end_year = model_1["Year"].max() if not model_1.empty else "2026"
+print("\n##### Start Modeling #####\n")
+parts = TRAIN_START_DATE.split("-")
+train_start_year = model_1["Year"].min() if not model_1.empty else parts[0]
+train_end_year = model_1["Year"].max() if not model_1.empty else "2026"
 
-# if HAS_ESG:
-#     template_file_name = f"ESG_{train_start_year}_{train_end_year}"
-# elif not HAS_ESG:
-#     template_file_name = f"NoESG_{train_start_year}_{train_end_year}"
+if HAS_ESG:
+    template_file_name = f"ESG_{train_start_year}_{train_end_year}"
+elif not HAS_ESG:
+    template_file_name = f"NoESG_{train_start_year}_{train_end_year}"
 
-# models = {
-#     "Model 1": model_1,
-#     "Model 2": model_2,
-#     "Model 3": model_3,
-#     "Model 4": model_4
-# }
+models = {
+    "Model 1": model_1,
+    "Model 2": model_2,
+    "Model 3": model_3,
+    "Model 4": model_4
+}
 
-# all_evaluations = []
-# all_importances = []
+all_evaluations = []
+all_importances = []
 
-# for label, df in models.items():
-#     eva_rf, imp_rf, fig_rf = myfn.run_random_forest(df, label, n_estimators = 100, max_depth = 5, min_samples_leaf = 10)
-#     eva_xgb, imp_xgb, fig_xgb = myfn.run_xgboost(df, label, n_estimators = 100, max_depth = 5, learning_rate = 0.05)
-#     eva_knn = myfn.run_knn(df, label, n_neighbors = 5, weights = "distance")
-#     eva_linear_dict = myfn.run_linear_regressions(df, label)             # 接收包含 OLS, Lasso, Ridge 的字典並拆解
-#     eva_ols = eva_linear_dict["OLS"]
-#     eva_lasso = eva_linear_dict["Lasso"]
-#     eva_ridge = eva_linear_dict["Ridge"]
+for label, df in models.items():
+    eva_rf, imp_rf, fig_rf = myfn.run_random_forest(df, label, n_estimators = 100, max_depth = 5, min_samples_leaf = 10)
+    eva_xgb, imp_xgb, fig_xgb = myfn.run_xgboost(df, label, n_estimators = 100, max_depth = 5, learning_rate = 0.05)
+    eva_knn = myfn.run_knn(df, label, n_neighbors = 5, weights = "distance")
+    eva_linear_dict = myfn.run_linear_regressions(df, label)             # 接收包含 OLS, Lasso, Ridge 的字典並拆解
+    eva_ols = eva_linear_dict["OLS"]
+    eva_lasso = eva_linear_dict["Lasso"]
+    eva_ridge = eva_linear_dict["Ridge"]
     
-#     eva_cur = pd.DataFrame({
-#         "Model": [label] * 6,
-#         "Algorithm": ["Random Forest", "XGBoost", "KNN", "LR - OLS", "LR - Lasso", "LR - Ridge"],
+    eva_cur = pd.DataFrame({
+        "Model": [label] * 6,
+        "Algorithm": ["Random Forest", "XGBoost", "KNN", "LR - OLS", "LR - Lasso", "LR - Ridge"],
         
-#         # Training
-#         "Training_MSE": [eva_rf["MSE"].iloc[0], eva_xgb["MSE"].iloc[0], eva_knn["MSE"].iloc[0], eva_ols["MSE"].iloc[0], eva_lasso["MSE"].iloc[0], eva_ridge["MSE"].iloc[0]],
-#         "Training_MAE": [eva_rf["MAE"].iloc[0], eva_xgb["MAE"].iloc[0], eva_knn["MAE"].iloc[0], eva_ols["MAE"].iloc[0], eva_lasso["MAE"].iloc[0], eva_ridge["MAE"].iloc[0]],
-#         "Training_R-Squared": [eva_rf["R-Squared"].iloc[0], eva_xgb["R-Squared"].iloc[0], eva_knn["R-Squared"].iloc[0], eva_ols["R-Squared"].iloc[0], eva_lasso["R-Squared"].iloc[0], eva_ridge["R-Squared"].iloc[0]],
-#         "Training_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[0], eva_xgb["Adj-R-Squared"].iloc[0], eva_knn["Adj-R-Squared"].iloc[0], eva_ols["Adj-R-Squared"].iloc[0], eva_lasso["Adj-R-Squared"].iloc[0], eva_ridge["Adj-R-Squared"].iloc[0]],
+        # Training
+        "Training_MSE": [eva_rf["MSE"].iloc[0], eva_xgb["MSE"].iloc[0], eva_knn["MSE"].iloc[0], eva_ols["MSE"].iloc[0], eva_lasso["MSE"].iloc[0], eva_ridge["MSE"].iloc[0]],
+        "Training_MAE": [eva_rf["MAE"].iloc[0], eva_xgb["MAE"].iloc[0], eva_knn["MAE"].iloc[0], eva_ols["MAE"].iloc[0], eva_lasso["MAE"].iloc[0], eva_ridge["MAE"].iloc[0]],
+        "Training_R-Squared": [eva_rf["R-Squared"].iloc[0], eva_xgb["R-Squared"].iloc[0], eva_knn["R-Squared"].iloc[0], eva_ols["R-Squared"].iloc[0], eva_lasso["R-Squared"].iloc[0], eva_ridge["R-Squared"].iloc[0]],
+        "Training_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[0], eva_xgb["Adj-R-Squared"].iloc[0], eva_knn["Adj-R-Squared"].iloc[0], eva_ols["Adj-R-Squared"].iloc[0], eva_lasso["Adj-R-Squared"].iloc[0], eva_ridge["Adj-R-Squared"].iloc[0]],
 
-#         # Holdout
-#         "Holdout_MSE": [eva_rf["MSE"].iloc[1], eva_xgb["MSE"].iloc[1], eva_knn["MSE"].iloc[1], eva_ols["MSE"].iloc[1], eva_lasso["MSE"].iloc[1], eva_ridge["MSE"].iloc[1]],
-#         "Holdout_MAE": [eva_rf["MAE"].iloc[1], eva_xgb["MAE"].iloc[1], eva_knn["MAE"].iloc[1], eva_ols["MAE"].iloc[1], eva_lasso["MAE"].iloc[1], eva_ridge["MAE"].iloc[1]],
-#         "Holdout_R-Squared": [eva_rf["R-Squared"].iloc[1], eva_xgb["R-Squared"].iloc[1], eva_knn["R-Squared"].iloc[1], eva_ols["R-Squared"].iloc[1], eva_lasso["R-Squared"].iloc[1], eva_ridge["R-Squared"].iloc[1]],
-#         "Holdout_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[1], eva_xgb["Adj-R-Squared"].iloc[1], eva_knn["Adj-R-Squared"].iloc[1], eva_ols["Adj-R-Squared"].iloc[1], eva_lasso["Adj-R-Squared"].iloc[1], eva_ridge["Adj-R-Squared"].iloc[1]]
-#     })
+        # Holdout
+        "Holdout_MSE": [eva_rf["MSE"].iloc[1], eva_xgb["MSE"].iloc[1], eva_knn["MSE"].iloc[1], eva_ols["MSE"].iloc[1], eva_lasso["MSE"].iloc[1], eva_ridge["MSE"].iloc[1]],
+        "Holdout_MAE": [eva_rf["MAE"].iloc[1], eva_xgb["MAE"].iloc[1], eva_knn["MAE"].iloc[1], eva_ols["MAE"].iloc[1], eva_lasso["MAE"].iloc[1], eva_ridge["MAE"].iloc[1]],
+        "Holdout_R-Squared": [eva_rf["R-Squared"].iloc[1], eva_xgb["R-Squared"].iloc[1], eva_knn["R-Squared"].iloc[1], eva_ols["R-Squared"].iloc[1], eva_lasso["R-Squared"].iloc[1], eva_ridge["R-Squared"].iloc[1]],
+        "Holdout_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[1], eva_xgb["Adj-R-Squared"].iloc[1], eva_knn["Adj-R-Squared"].iloc[1], eva_ols["Adj-R-Squared"].iloc[1], eva_lasso["Adj-R-Squared"].iloc[1], eva_ridge["Adj-R-Squared"].iloc[1]]
+    })
 
-#     imp_cur = pd.DataFrame({
-#         "Model": [label] * (len(imp_rf) + len(imp_xgb)),
-#         "Algorithm": ["Random Forest"] * len(imp_rf) + ["XGBoost"] * len(imp_xgb),
-#         "Rank": list(imp_rf["Rank"]) + list(imp_xgb["Rank"]),
-#         "Feature": list(imp_rf["Feature"]) + list(imp_xgb["Feature"]),
-#         "Importance": list(imp_rf["Importance"]) + list(imp_xgb["Importance"])
-#     })
+    imp_cur = pd.DataFrame({
+        "Model": [label] * (len(imp_rf) + len(imp_xgb)),
+        "Algorithm": ["Random Forest"] * len(imp_rf) + ["XGBoost"] * len(imp_xgb),
+        "Rank": list(imp_rf["Rank"]) + list(imp_xgb["Rank"]),
+        "Feature": list(imp_rf["Feature"]) + list(imp_xgb["Feature"]),
+        "Importance": list(imp_rf["Importance"]) + list(imp_xgb["Importance"])
+    })
     
-#     all_evaluations.append(eva_cur)
-#     all_importances.append(imp_cur)
+    all_evaluations.append(eva_cur)
+    all_importances.append(imp_cur)
 
-#     fig_rf.savefig(f"./figures/Imp_Fig_RF_{label}_{template_file_name}.png")
-#     fig_xgb.savefig(f"./figures/Imp_Fig_XGB_{label}_{template_file_name}.png")
+    fig_rf.savefig(f"./figures/Imp_Fig_RF_{label}_{template_file_name}.png")
+    fig_xgb.savefig(f"./figures/Imp_Fig_XGB_{label}_{template_file_name}.png")
 
-# final_eva = pd.concat(all_evaluations, ignore_index = True)
-# final_eva = final_eva.sort_values(by = ["Algorithm", "Model"]).reset_index(drop = True)
-# final_imp = pd.concat(all_importances, ignore_index = True)
-# final_imp = final_imp.sort_values(by = ["Algorithm", "Model", "Rank"]).reset_index(drop = True)
+final_eva = pd.concat(all_evaluations, ignore_index = True)
+final_eva = final_eva.sort_values(by = ["Algorithm", "Model"]).reset_index(drop = True)
+final_imp = pd.concat(all_importances, ignore_index = True)
+final_imp = final_imp.sort_values(by = ["Algorithm", "Model", "Rank"]).reset_index(drop = True)
 
-# # Insert an empty row between different algorithms for better readability
-# empty_row = pd.DataFrame([[None] * len(final_eva.columns)], columns = final_eva.columns)
-# chunks = []
-# for _, group in final_eva.groupby("Algorithm", sort = False):
-#     chunks.append(group)
-#     chunks.append(empty_row)
+# Insert an empty row between different algorithms for better readability
+empty_row = pd.DataFrame([[None] * len(final_eva.columns)], columns = final_eva.columns)
+chunks = []
+for _, group in final_eva.groupby("Algorithm", sort = False):
+    chunks.append(group)
+    chunks.append(empty_row)
 
-# final_eva = pd.concat(chunks, ignore_index = True).iloc[:-1]
+final_eva = pd.concat(chunks, ignore_index = True).iloc[:-1]
 
-# final_eva = final_eva.fillna("")
+final_eva = final_eva.fillna("")
 
-# eva_file_name = f"Eva_{template_file_name}.csv"
-# imp_file_name = f"Imp_{template_file_name}.csv"
+eva_file_name = f"Eva_{template_file_name}.csv"
+imp_file_name = f"Imp_{template_file_name}.csv"
 
-# final_eva.to_csv(f"./results/{eva_file_name}", index = False)
-# final_imp.to_csv(f"./results/{imp_file_name}", index = False)
+final_eva.to_csv(f"./results/{eva_file_name}", index = False)
+final_imp.to_csv(f"./results/{imp_file_name}", index = False)
 
-# model_1.to_csv(f"./models/Model1_{template_file_name}.csv", index = False)
-# model_2.to_csv(f"./models/Model2_{template_file_name}.csv", index = False)
-# model_3.to_csv(f"./models/Model3_{template_file_name}.csv", index = False)
-# model_4.to_csv(f"./models/Model4_{template_file_name}.csv", index = False)
+model_1.to_csv(f"./models/Model1_{template_file_name}.csv", index = False)
+model_2.to_csv(f"./models/Model2_{template_file_name}.csv", index = False)
+model_3.to_csv(f"./models/Model3_{template_file_name}.csv", index = False)
+model_4.to_csv(f"./models/Model4_{template_file_name}.csv", index = False)
 
-# print(f"\n{'=' * 5}", f"Evaluation Results", f"{'=' * 5}\n", sep = " ")
-# print(final_eva)
+print(f"\n{'=' * 5}", f"Evaluation Results", f"{'=' * 5}\n", sep = " ")
+print(final_eva)
