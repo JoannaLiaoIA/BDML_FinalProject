@@ -5,18 +5,20 @@
 __pycache__/
 *.pyc
 
-# 敏感的環境變數與金鑰檔
+# 環境變數、金鑰檔、Gradio 產生的本地暫存與快取資料夾
 .env
 .venv
-
-# Gradio 產生的本地暫存與快取資料夾
+*.parquet
 .gradio/
 
 # 本地備份與測試用的檔案
-backup_code/
+data/
+raw/
+processed/
 log/
-*transaction*.csv
+data_fetch/
 test.py
+
 
 # Other
 文獻/

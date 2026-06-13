@@ -1,13 +1,14 @@
 import os
 import numpy as np
 import pandas as pd
-import function as myfn
+import src.function as myfn
 from dotenv import load_dotenv
 from fredapi import Fred
 from datetime import datetime
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
 HAS_ESG = False
+HAS_TECH_IDX = False
 IS_LARGE_DATASET = True
 TOP_N_FEATURES = 20
 IS_DEBUG = False
@@ -80,15 +81,11 @@ df_daily_transaction["ClosingPrice"] = pd.to_numeric(df_daily_transaction["Closi
 df_daily_transaction["TradingVolume"] = pd.to_numeric(df_daily_transaction["TradingVolume"], errors = "coerce")
 df_daily_transaction["TradingMoney"] = pd.to_numeric(df_daily_transaction["TradingMoney"], errors = "coerce")
 df_daily_transaction["TradingTurnover"] = pd.to_numeric(df_daily_transaction["TradingTurnover"], errors = "coerce")
-# Spread 修改為 (MaxPrice - MinPrice) / MinPrice
-df_daily_transaction["MaxPrice"] = pd.to_numeric(df_daily_transaction["MaxPrice"], errors = "coerce")
-df_daily_transaction["MinPrice"] = pd.to_numeric(df_daily_transaction["MinPrice"], errors = "coerce")
-df_daily_transaction["Spread"] = (df_daily_transaction["MaxPrice"] - df_daily_transaction["MinPrice"]) / df_daily_transaction["MinPrice"]
+df_daily_transaction["Spread"] = pd.to_numeric(df_daily_transaction["Spread"], errors = "coerce")
 df_daily_transaction = df_daily_transaction.dropna()
 df_daily_transaction = df_daily_transaction.sort_values(by = ["StockID", "Date"], ascending = True)
 if IS_DEBUG:
     myfn.describe_data(df_daily_transaction, "Daily Transaction Data")
-myfn.describe_data(df_daily_transaction, "Daily Transaction Data")
 
 # ==========================================
 # 4.2 Company Category
@@ -270,6 +267,7 @@ df_transaction_quarterly = pd.merge(
     on = ["Year", "Quarter", "StockID"],
     how = "inner"
 )
+
 df_tech_idx_quarterly = myfn.daily_to_quarterly(df_tech_idx, target_cols = ["VIX", "SOX", "DJIA", "IXIC", "SP500", "FnG"], method = "mean")
 print("Daily data converted to quarterly successfully.")
 
@@ -425,15 +423,17 @@ model_return_general = df_dv[["StockID", "Year", "Quarter", "QuarterlyReturn", "
 model_volatility_general = df_dv[["StockID", "Year", "Quarter", "QuarterlyVolatility", "QuarterlyVolatility_Lag1", "QuarterlyVolatility_Lag2", "QuarterlyVolatility_Lag3"]].copy()
 
 
-# # 1. 單獨針對 Quarter 欄位做 dummy，並加上前綴字 (prefix)
-# quarter_dummies_ret = pd.get_dummies(model_return_general["Quarter"], prefix = "Quarter", drop_first=True, dtype=int)
-# model_return_general = model_return_general.join(quarter_dummies_ret)
+# 1. 單獨針對 Quarter 欄位做 dummy，並加上前綴字 (prefix)
+quarter_dummies_ret = pd.get_dummies(model_return_general["Quarter"], prefix = "Quarter", drop_first = True, dtype = int)
+# 💡 強制讓 dummy 的索引跟原本的 df 完全一致
+quarter_dummies_ret.index = model_return_general.index
+model_return_general = model_return_general.join(quarter_dummies_ret)
 
-# quarter_dummies_vol = pd.get_dummies(model_volatility_general["Quarter"], prefix = "Quarter", drop_first=True, dtype=int)
-# model_volatility_general = model_volatility_general.join(quarter_dummies_vol)
-
-# myfn.describe_data(model_return_general, "Model Return General")
-# myfn.describe_data(model_volatility_general, "Model Volatility General")
+# 2. 針對第二個 df 做同樣的操作
+quarter_dummies_vol = pd.get_dummies(model_volatility_general["Quarter"], prefix = "Quarter", drop_first = True, dtype = int)
+# 💡 強制讓 dummy 的索引跟原本的 df 完全一致
+quarter_dummies_vol.index = model_volatility_general.index
+model_volatility_general = model_volatility_general.join(quarter_dummies_vol)
 
 # Return
 model_return_general = pd.merge(
@@ -502,7 +502,8 @@ model_1 = pd.merge(
     )
 model_1 = myfn.clean_model(model_1)
 print(f"Model 1 Created Successfully!!!!!")
-myfn.describe_data(model_1, "Model 1")
+if IS_DEBUG:
+    myfn.describe_data(model_1, "Model 1")
 
 model_2 = pd.merge(
     model_return_general,
@@ -519,7 +520,8 @@ model_2 = pd.merge(
     )
 model_2 = myfn.clean_model(model_2)
 print(f"Model 2 Created Successfully!!!!!")
-myfn.describe_data(model_2, "Model 2")
+if IS_DEBUG:
+    myfn.describe_data(model_2, "Model 2")
 
 model_3 = pd.merge(
     model_volatility_general,
@@ -536,7 +538,8 @@ model_3 = pd.merge(
     )
 model_3 = myfn.clean_model(model_3) 
 print(f"Model 3 Created Successfully!!!!!")
-myfn.describe_data(model_3, "Model 3")
+if IS_DEBUG:
+    myfn.describe_data(model_3, "Model 3")
 
 model_4 = pd.merge(
     model_volatility_general,
@@ -553,7 +556,8 @@ model_4 = pd.merge(
     )
 model_4 = myfn.clean_model(model_4)
 print(f"Model 4 Created Successfully!!!!!")
-myfn.describe_data(model_4, "Model 4")
+if IS_DEBUG:
+    myfn.describe_data(model_4, "Model 4")
 
 # ====================================================================================
 # Mechine Learning Modeling
@@ -563,9 +567,13 @@ parts = TRAIN_START_DATE.split("-")
 train_start_year = model_1["Year"].min() if not model_1.empty else parts[0]
 train_end_year = model_1["Year"].max() if not model_1.empty else "2026"
 
-if HAS_ESG:
-    template_file_name = f"ESG_{train_start_year}_{train_end_year}"
-elif not HAS_ESG:
+if HAS_ESG and HAS_TECH_IDX:
+    template_file_name = f"ESG_Tech_{train_start_year}_{train_end_year}"
+if HAS_ESG and not HAS_TECH_IDX:
+    template_file_name = f"ESG_NoTech_{train_start_year}_{train_end_year}"
+if not HAS_ESG and HAS_TECH_IDX:
+    template_file_name = f"NoESG_Tech_{train_start_year}_{train_end_year}"
+elif not HAS_ESG and not HAS_TECH_IDX:
     template_file_name = f"NoESG_{train_start_year}_{train_end_year}"
 
 models = {
@@ -579,38 +587,55 @@ all_evaluations = []
 all_importances = []
 
 for label, df in models.items():
-    eva_rf, imp_rf, fig_rf = myfn.run_random_forest(df, label, n_estimators = 100, max_depth = 5, min_samples_leaf = 10)
-    eva_xgb, imp_xgb, fig_xgb = myfn.run_xgboost(df, label, n_estimators = 100, max_depth = 5, learning_rate = 0.05)
+    eva_rf, imp_rf, fig_rf = myfn.run_random_forest(df, label, n_estimators = 500, max_depth = 10, min_samples_leaf = 10)
+    eva_xgb, imp_xgb, fig_xgb = myfn.run_xgboost(df, label, n_estimators = 300, max_depth = 5, learning_rate = 0.05)
     eva_knn = myfn.run_knn(df, label, n_neighbors = 5, weights = "distance")
     eva_linear_dict = myfn.run_linear_regressions(df, label)             # 接收包含 OLS, Lasso, Ridge 的字典並拆解
     eva_ols = eva_linear_dict["OLS"]
     eva_lasso = eva_linear_dict["Lasso"]
     eva_ridge = eva_linear_dict["Ridge"]
-    
+
+    model_results = {
+        "Random Forest": eva_rf,
+        "XGBoost": eva_xgb,
+        "KNN": eva_knn,
+        "LR - OLS": eva_ols,
+        "LR - Lasso": eva_lasso,
+        "LR - Ridge": eva_ridge
+        # 未來如果要加 SVM，只要在這裡加上 "SVM": eva_svm 即可，下方完全不用改！
+    }
+
+    imp_results = {
+        "Random Forest": imp_rf,
+        "XGBoost": imp_xgb
+    }
+
+    # 2. 動態生成 DataFrame
     eva_cur = pd.DataFrame({
-        "Model": [label] * 6,
-        "Algorithm": ["Random Forest", "XGBoost", "KNN", "LR - OLS", "LR - Lasso", "LR - Ridge"],
+        # 動態計算字典長度來產生對應數量的 label
+        "Model": [label] * len(model_results),
         
-        # Training
-        "Training_MSE": [eva_rf["MSE"].iloc[0], eva_xgb["MSE"].iloc[0], eva_knn["MSE"].iloc[0], eva_ols["MSE"].iloc[0], eva_lasso["MSE"].iloc[0], eva_ridge["MSE"].iloc[0]],
-        "Training_MAE": [eva_rf["MAE"].iloc[0], eva_xgb["MAE"].iloc[0], eva_knn["MAE"].iloc[0], eva_ols["MAE"].iloc[0], eva_lasso["MAE"].iloc[0], eva_ridge["MAE"].iloc[0]],
-        "Training_R-Squared": [eva_rf["R-Squared"].iloc[0], eva_xgb["R-Squared"].iloc[0], eva_knn["R-Squared"].iloc[0], eva_ols["R-Squared"].iloc[0], eva_lasso["R-Squared"].iloc[0], eva_ridge["R-Squared"].iloc[0]],
-        "Training_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[0], eva_xgb["Adj-R-Squared"].iloc[0], eva_knn["Adj-R-Squared"].iloc[0], eva_ols["Adj-R-Squared"].iloc[0], eva_lasso["Adj-R-Squared"].iloc[0], eva_ridge["Adj-R-Squared"].iloc[0]],
+        # 直接取出字典所有的 Key 作為演算法名稱
+        "Algorithm": list(model_results.keys()),
+        
+        # --- Training (擷取 .iloc[0]) ---
+        "Training_MSE": [df["MSE"].iloc[0] for df in model_results.values()],
+        "Training_MAE": [df["MAE"].iloc[0] for df in model_results.values()],
+        "Training_R-Squared": [df["R-Squared"].iloc[0] for df in model_results.values()],
+        "Training_Adj R-Squared": [df["Adj-R-Squared"].iloc[0] for df in model_results.values()],
 
-        # Holdout
-        "Holdout_MSE": [eva_rf["MSE"].iloc[1], eva_xgb["MSE"].iloc[1], eva_knn["MSE"].iloc[1], eva_ols["MSE"].iloc[1], eva_lasso["MSE"].iloc[1], eva_ridge["MSE"].iloc[1]],
-        "Holdout_MAE": [eva_rf["MAE"].iloc[1], eva_xgb["MAE"].iloc[1], eva_knn["MAE"].iloc[1], eva_ols["MAE"].iloc[1], eva_lasso["MAE"].iloc[1], eva_ridge["MAE"].iloc[1]],
-        "Holdout_R-Squared": [eva_rf["R-Squared"].iloc[1], eva_xgb["R-Squared"].iloc[1], eva_knn["R-Squared"].iloc[1], eva_ols["R-Squared"].iloc[1], eva_lasso["R-Squared"].iloc[1], eva_ridge["R-Squared"].iloc[1]],
-        "Holdout_Adj R-Squared": [eva_rf["Adj-R-Squared"].iloc[1], eva_xgb["Adj-R-Squared"].iloc[1], eva_knn["Adj-R-Squared"].iloc[1], eva_ols["Adj-R-Squared"].iloc[1], eva_lasso["Adj-R-Squared"].iloc[1], eva_ridge["Adj-R-Squared"].iloc[1]]
+        # --- Holdout (擷取 .iloc[1]) ---
+        "Holdout_MSE": [df["MSE"].iloc[1] for df in model_results.values()],
+        "Holdout_MAE": [df["MAE"].iloc[1] for df in model_results.values()],
+        "Holdout_R-Squared": [df["R-Squared"].iloc[1] for df in model_results.values()],
+        "Holdout_Adj R-Squared": [df["Adj-R-Squared"].iloc[1] for df in model_results.values()]
     })
 
-    imp_cur = pd.DataFrame({
-        "Model": [label] * (len(imp_rf) + len(imp_xgb)),
-        "Algorithm": ["Random Forest"] * len(imp_rf) + ["XGBoost"] * len(imp_xgb),
-        "Rank": list(imp_rf["Rank"]) + list(imp_xgb["Rank"]),
-        "Feature": list(imp_rf["Feature"]) + list(imp_xgb["Feature"]),
-        "Importance": list(imp_rf["Importance"]) + list(imp_xgb["Importance"])
-    })
+    imp_cur = pd.concat([
+    # 為每個 DataFrame 動態加上 Algorithm 和 Model 欄位
+        df.assign(Algorithm = algo, Model = label) 
+        for algo, df in imp_results.items()
+    ], ignore_index = True)
     
     all_evaluations.append(eva_cur)
     all_importances.append(imp_cur)
