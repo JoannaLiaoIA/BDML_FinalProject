@@ -1,12 +1,8 @@
-import os
-import numpy as np
 import pandas as pd
 import config as myCfg
-import src.function as myFn
-from dotenv import load_dotenv
+import src.utility_function as myFn
 from fredapi import Fred
 from datetime import datetime
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
 
 # Daily Transaction Data
@@ -51,38 +47,40 @@ def load_company_category():
 
 def load_tech_index():
     print("\nLoading technology index data from FRED and Fear & Greed Index from Github...")
-    fred = Fred(api_key = myCfg.FRED_API_KEY)
-    series_to_concat = {}
-    try:
-        series_to_concat["VIX"] = fred.get_series("VIXCLS")
-        series_to_concat["SOX"] = fred.get_series("NASDAQSOX")
-        series_to_concat["DJIA"] = fred.get_series("DJIA")
-        series_to_concat["IXIC"] = fred.get_series("NASDAQCOM")
-        series_to_concat["SP500"] = fred.get_series("SP500")
-    except Exception as e:
-        print(f"FRED API request error: {e}")
+    # Local
+    df_tech_idx = pd.read_csv("data/processed/TechIndex_2016_2026.csv")
+    # fred = Fred(api_key = myCfg.FRED_API_KEY)
+    # series_to_concat = {}
+    # try:
+    #     series_to_concat["VIX"] = fred.get_series("VIXCLS")
+    #     series_to_concat["SOX"] = fred.get_series("NASDAQSOX")
+    #     series_to_concat["DJIA"] = fred.get_series("DJIA")
+    #     series_to_concat["IXIC"] = fred.get_series("NASDAQCOM")
+    #     series_to_concat["SP500"] = fred.get_series("SP500")
+    # except Exception as e:
+    #     print(f"FRED API request error: {e}")
 
-    try:
-        data_FnG = pd.read_csv("https://raw.githubusercontent.com/whit3rabbit/fear-greed-data/refs/heads/main/fear-greed.csv")
-        data_FnG["Date"] = pd.to_datetime(data_FnG["Date"], errors = "coerce")
-    except Exception as e:
-        print(f"FnG request error: {e}")
-        data_FnG = pd.DataFrame(columns = ["Fear Greed", "Rating"])
+    # try:
+    #     data_FnG = pd.read_csv("https://raw.githubusercontent.com/whit3rabbit/fear-greed-data/refs/heads/main/fear-greed.csv")
+    #     data_FnG["Date"] = pd.to_datetime(data_FnG["Date"], errors = "coerce")
+    # except Exception as e:
+    #     print(f"FnG request error: {e}")
+    #     data_FnG = pd.DataFrame(columns = ["Fear Greed", "Rating"])
 
-    df_tech_idx = pd.concat(series_to_concat, axis = 1)
-    df_tech_idx = df_tech_idx.reset_index()
-    df_tech_idx = df_tech_idx.rename(columns = {"index": "Date"})
+    # df_tech_idx = pd.concat(series_to_concat, axis = 1)
+    # df_tech_idx = df_tech_idx.reset_index()
+    # df_tech_idx = df_tech_idx.rename(columns = {"index": "Date"})
 
-    if not data_FnG.empty:
-        data_FnG = data_FnG.rename(columns = {"Fear Greed": "FnG", "Rating": "FnGRating"})
-        df_tech_idx = pd.merge(
-            df_tech_idx,
-            data_FnG[["Date", "FnG"]],
-            on = "Date",
-            how = "left"
-        )
-    df_tech_idx["Date"] = df_tech_idx["Date"].apply(myFn.convert_date)
-    df_tech_idx = df_tech_idx.dropna()
+    # if not data_FnG.empty:
+    #     data_FnG = data_FnG.rename(columns = {"Fear Greed": "FnG", "Rating": "FnGRating"})
+    #     df_tech_idx = pd.merge(
+    #         df_tech_idx,
+    #         data_FnG[["Date", "FnG"]],
+    #         on = "Date",
+    #         how = "left"
+    #     )
+    # df_tech_idx["Date"] = df_tech_idx["Date"].apply(myFn.convert_date)
+    # df_tech_idx = df_tech_idx.dropna()
 
     if myCfg.IS_DEBUG:
         myFn.describe_data(df_tech_idx, "Technology Index Data")

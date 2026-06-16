@@ -1,9 +1,8 @@
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import config as myCfg
-import src.function as myFn
-from datetime import datetime
+import src.utility_function as myFn
+import src.algo_runner as myRunner
 
 
 def calculate_time_series_features(df: pd.DataFrame, target_cols: list, method: str) -> pd.DataFrame:
@@ -59,8 +58,8 @@ def calculate_time_series_features(df: pd.DataFrame, target_cols: list, method: 
 
 def annual_to_quarterly(df: pd.DataFrame, target_cols: list, method: str = "divide") -> pd.DataFrame:
     """
-    method = "divide": divide the annual value by 4 to get quarterly value
-    method = "duplicate": duplicate the annual value to all four quarters
+    method = "divide": divide the annual value by 4 to get quarterly value.
+    method = "duplicate": duplicate the annual value to all four quarters.
     """
     out = df.copy()
     
@@ -170,7 +169,9 @@ def clean_model(model: pd.DataFrame) -> pd.DataFrame:
     out = model.copy()
 
     out.replace([np.inf, -np.inf], np.nan, inplace = True)
-    # print(out.isna().sum().sort_values(ascending = False).head(20))
+
+    if myCfg.IS_DEBUG:
+        print(out.isna().sum().sort_values(ascending = False).head(20))
     
     cols_to_drop = [c for c in model.columns if "Target" in c]
     out = out.drop(columns = cols_to_drop)
@@ -358,3 +359,43 @@ def merge_base_features(df_base, df_trans_cur, df_op_lag, df_esg_lag, has_esg):
         df_merged[esg_features] = df_merged[esg_features].fillna(0)
         
     return df_merged
+
+def assemble_final_models(model_ret, model_vol, market_QoQ, market_YoY, tech_QoQ, tech_YoY):
+    """
+    1. Assemble the final modeling datasets for both Return and Volatility, each with QoQ and YoY market/tech features.
+    2. Return a dictionary containing the 4 final datasets.
+    """
+    recipes = {
+        "Model 1": {"base": model_ret, "market": market_QoQ, "tech": tech_QoQ},
+        "Model 2": {"base": model_ret, "market": market_YoY, "tech": tech_YoY},
+        "Model 3": {"base": model_vol, "market": market_QoQ, "tech": tech_QoQ},
+        "Model 4": {"base": model_vol, "market": market_YoY, "tech": tech_YoY}
+    }
+    
+    final_models = {}
+    
+    for model_name, parts in recipes.items():
+        df_merged = pd.merge(
+            parts["base"],
+            parts["market"],
+            left_on = ["Year", "Quarter"],
+            right_on = ["TargetYear", "TargetQuarter"],
+            how = "left"
+        )
+        
+        df_merged = pd.merge(
+            df_merged,
+            parts["tech"],
+            on = ["Year", "Quarter"],
+            how = "left"
+        )
+        
+        df_cleaned = clean_model(df_merged)
+        final_models[model_name] = df_cleaned
+                
+        if myCfg.IS_DEBUG:
+            myFn.describe_data(df_cleaned, model_name)
+
+        print(f"{model_name} Created Successfully!!!!!")
+            
+    return final_models

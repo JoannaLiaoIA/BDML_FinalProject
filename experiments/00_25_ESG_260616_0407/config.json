@@ -1,0 +1,88 @@
+{
+    "END_DATE": "2025-12-31",
+    "FRED_API_KEY": "c0efe6febf8975ce1b72c8bbd306b45c",
+    "HAS_BACKUP_REGRESSORS": false,
+    "HAS_ESG": true,
+    "HOLDOUT_END_DATE": "2025-12-31",
+    "HOLDOUT_END_QUARTER": 4,
+    "HOLDOUT_END_YEAR": 2025,
+    "HOLDOUT_START_DATE": "2025-01-01",
+    "HOLDOUT_START_QUARTER": 1,
+    "HOLDOUT_START_YEAR": 2025,
+    "IS_DEBUG": false,
+    "IS_LARGE_DATASET": true,
+    "KNN_GRID": {
+        "n_neighbors": [
+            5
+        ],
+        "weights": [
+            "distance"
+        ]
+    },
+    "LR_GRID": {
+        "OLS": {
+            "fit_intercept": [
+                true,
+                false
+            ]
+        },
+        "Lasso": {
+            "alpha": [
+                0.005
+            ]
+        },
+        "Ridge": {
+            "alpha": [
+                1.0
+            ]
+        }
+    },
+    "RF_GRID": {
+        "n_estimators": [
+            100,
+            300,
+            500
+        ],
+        "max_depth": [
+            5,
+            10,
+            15
+        ],
+        "min_samples_leaf": [
+            5,
+            10,
+            20
+        ],
+        "max_features": [
+            "sqrt",
+            "log2",
+            1.0
+        ]
+    },
+    "START_DATE": "1998-01-01",
+    "TEMPLATE_DIR_NAME": "00_25_ESG",
+    "TOP_N_FEATURES": 20,
+    "TRAINING_END_QUARTER": 4,
+    "TRAINING_END_YEAR": 2024,
+    "TRAINING_START_QUARTER": 1,
+    "TRAINING_START_YEAR": 2000,
+    "TRAIN_END_DATE": "2024-12-31",
+    "TRAIN_START_DATE": "2000-01-01",
+    "XGB_GRID": {
+        "n_estimators": [
+            100,
+            300,
+            500
+        ],
+        "max_depth": [
+            3,
+            5,
+            7
+        ],
+        "learning_rate": [
+            0.01,
+            0.05,
+            0.1
+        ]
+    }
+}

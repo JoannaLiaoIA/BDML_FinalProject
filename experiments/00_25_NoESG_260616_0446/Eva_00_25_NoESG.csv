@@ -1,0 +1,905 @@
+Algorithm,Model,Dataset,Parameters,MSE,MAE,R-Squared,Adj-R-Squared
+KNN,Model 1,Holdout Set,"n_neighbors = 5, weights = distance",0.024857,0.099992,0.187945,0.176465
+KNN,Model 1,Training Set,"n_neighbors = 5, weights = distance",0.000000,0.000000,1.000000,1.000000
+KNN,Model 2,Holdout Set,"n_neighbors = 5, weights = distance",0.024652,0.099853,0.194649,0.183263
+KNN,Model 2,Training Set,"n_neighbors = 5, weights = distance",0.000000,0.000000,1.000000,1.000000
+KNN,Model 3,Holdout Set,"n_neighbors = 5, weights = distance",0.004267,0.040463,0.522208,0.515360
+KNN,Model 3,Training Set,"n_neighbors = 5, weights = distance",0.000000,0.000000,1.000000,1.000000
+KNN,Model 4,Holdout Set,"n_neighbors = 5, weights = distance",0.004241,0.040437,0.525085,0.518278
+KNN,Model 4,Training Set,"n_neighbors = 5, weights = distance",0.000000,0.000000,1.000000,1.000000
+Lasso,Model 1,Holdout Set,alpha = 0.005,0.024767,0.113274,0.190889,0.179450
+Lasso,Model 1,Training Set,alpha = 0.005,0.028350,0.092908,0.262261,0.260852
+Lasso,Model 2,Holdout Set,alpha = 0.005,0.024588,0.109375,0.196743,0.185386
+Lasso,Model 2,Training Set,alpha = 0.005,0.029110,0.094516,0.249317,0.247841
+Lasso,Model 3,Holdout Set,alpha = 0.005,0.003085,0.033568,0.654540,0.649588
+Lasso,Model 3,Training Set,alpha = 0.005,0.002383,0.030652,0.673278,0.672647
+Lasso,Model 4,Holdout Set,alpha = 0.005,0.003086,0.033546,0.654484,0.649532
+Lasso,Model 4,Training Set,alpha = 0.005,0.002409,0.030853,0.672510,0.671858
+OLS,Model 1,Holdout Set,fit_intercept = False,0.059740,0.194303,-0.951633,-0.979224
+OLS,Model 1,Holdout Set,fit_intercept = True,0.058803,0.188923,-0.921021,-0.948180
+OLS,Model 1,Training Set,fit_intercept = False,0.028438,0.096011,0.259957,0.258544
+OLS,Model 1,Training Set,fit_intercept = True,0.027442,0.091615,0.285876,0.284513
+OLS,Model 2,Holdout Set,fit_intercept = False,0.025829,0.114889,0.156190,0.144260
+OLS,Model 2,Holdout Set,fit_intercept = True,0.030102,0.129225,0.016590,0.002686
+OLS,Model 2,Training Set,fit_intercept = False,0.028713,0.096217,0.259570,0.258114
+OLS,Model 2,Training Set,fit_intercept = True,0.027823,0.092316,0.282500,0.281089
+OLS,Model 3,Holdout Set,fit_intercept = False,0.003061,0.034881,0.657273,0.652361
+OLS,Model 3,Holdout Set,fit_intercept = True,0.012456,0.101404,-0.394798,-0.414790
+OLS,Model 3,Training Set,fit_intercept = False,0.013962,0.109884,-0.914063,-0.917760
+OLS,Model 3,Training Set,fit_intercept = True,0.002184,0.029444,0.700571,0.699993
+OLS,Model 4,Holdout Set,fit_intercept = False,0.013394,0.104102,-0.499850,-0.521347
+OLS,Model 4,Holdout Set,fit_intercept = True,0.003078,0.035790,0.655270,0.650329
+OLS,Model 4,Training Set,fit_intercept = False,0.014065,0.110249,-0.912040,-0.915844
+OLS,Model 4,Training Set,fit_intercept = True,0.002207,0.029646,0.699971,0.699374
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.019390,0.094609,0.366567,0.358097
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.019251,0.094379,0.371092,0.362684
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.019216,0.094292,0.372223,0.363830
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.019490,0.094693,0.363281,0.354768
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.019403,0.094540,0.366118,0.357643
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.019341,0.094475,0.368146,0.359698
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.020283,0.095363,0.337374,0.328515
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.019940,0.095062,0.348596,0.339887
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.019931,0.095143,0.348865,0.340159
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.020410,0.093121,0.333222,0.324307
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.020258,0.093004,0.338191,0.329342
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.020185,0.092655,0.340591,0.331774
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.020361,0.092824,0.334833,0.325940
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.020753,0.093978,0.322018,0.312953
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.020586,0.093374,0.327488,0.318496
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.020416,0.093433,0.333023,0.324106
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.020349,0.093123,0.335213,0.326325
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.020219,0.092887,0.339473,0.330641
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.018959,0.090456,0.380620,0.372338
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.019173,0.091233,0.373657,0.365282
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.019285,0.091567,0.369994,0.361571
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.019375,0.091421,0.367056,0.358593
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.019424,0.091233,0.365457,0.356973
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.019369,0.091134,0.367254,0.358793
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.019113,0.090983,0.375590,0.367241
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.019215,0.091535,0.372269,0.363876
+RF,Model 1,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.019242,0.091479,0.371396,0.362992
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.018970,0.093081,0.380267,0.371981
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.018842,0.092820,0.384469,0.376239
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.018826,0.092822,0.384978,0.376755
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.019205,0.093505,0.372608,0.364219
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.019056,0.093150,0.377461,0.369137
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.019028,0.093206,0.378375,0.370063
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.019906,0.093913,0.349693,0.340998
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.019463,0.093316,0.364177,0.355675
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.019500,0.093504,0.362958,0.354440
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.019717,0.090902,0.355865,0.347253
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.019948,0.091323,0.348313,0.339600
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.019896,0.091103,0.350015,0.341325
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.020588,0.093065,0.327430,0.318437
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.020597,0.092841,0.327129,0.318132
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.020469,0.092616,0.331317,0.322377
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.019746,0.091140,0.354935,0.346310
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.019718,0.091033,0.355822,0.347210
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.019671,0.090853,0.357359,0.348767
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.018824,0.089717,0.385039,0.376817
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.018794,0.089551,0.386009,0.377799
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.018824,0.089446,0.385032,0.376810
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.019277,0.090567,0.370229,0.361809
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.019278,0.090576,0.370211,0.361790
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.019179,0.090360,0.373456,0.365079
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.018737,0.089811,0.387883,0.379698
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.018574,0.089267,0.393208,0.385095
+RF,Model 1,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.018575,0.089141,0.393171,0.385057
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.020925,0.100023,0.316395,0.307255
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.020759,0.099713,0.321844,0.312777
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.020753,0.099691,0.322024,0.312959
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.020923,0.100198,0.316475,0.307336
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.020837,0.099966,0.319289,0.310187
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.020792,0.099873,0.320750,0.311669
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.021716,0.100552,0.290564,0.281078
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.021426,0.100272,0.300034,0.290675
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.021415,0.100264,0.300395,0.291042
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.022985,0.100307,0.249108,0.239069
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.023161,0.100327,0.243342,0.233225
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.022953,0.099711,0.250170,0.240144
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.022727,0.099542,0.257540,0.247613
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.022957,0.099782,0.250014,0.239986
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.022855,0.099427,0.253362,0.243379
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.023055,0.099869,0.246808,0.236738
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.023156,0.100246,0.243521,0.233407
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.022887,0.099508,0.252296,0.242299
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.021249,0.097513,0.305824,0.296543
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.021576,0.097962,0.295152,0.285728
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.021567,0.098044,0.295416,0.285996
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.021628,0.098468,0.293451,0.284004
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.021784,0.098355,0.288358,0.278844
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.021587,0.097984,0.294792,0.285363
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.021770,0.098300,0.288795,0.279286
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.021927,0.098466,0.283671,0.274094
+RF,Model 1,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.021761,0.098277,0.289106,0.279601
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.017451,0.068371,0.545875,0.545054
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.017370,0.068169,0.547970,0.547153
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.017405,0.068146,0.547062,0.546244
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.018798,0.069712,0.510815,0.509932
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.018750,0.069568,0.512074,0.511193
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.018769,0.069530,0.511587,0.510705
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.015803,0.067356,0.588757,0.588015
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.015741,0.067179,0.590382,0.589642
+RF,Model 1,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.015783,0.067151,0.589284,0.588542
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.021428,0.076938,0.442380,0.441372
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.021618,0.077116,0.437434,0.436417
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.021699,0.077151,0.435329,0.434309
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.023087,0.078583,0.399212,0.398127
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.023253,0.078750,0.394901,0.393808
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.023208,0.078643,0.396067,0.394976
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.019882,0.076245,0.482621,0.481686
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.019968,0.076100,0.480384,0.479446
+RF,Model 1,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.020002,0.076005,0.479495,0.478555
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.020476,0.074837,0.467163,0.466200
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.020639,0.075006,0.462919,0.461949
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.020656,0.075007,0.462470,0.461499
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.021921,0.076417,0.429548,0.428518
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.022051,0.076475,0.426160,0.425123
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.022048,0.076404,0.426245,0.425209
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.018656,0.073695,0.514518,0.513641
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.018768,0.073714,0.511610,0.510728
+RF,Model 1,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.018783,0.073638,0.511201,0.510318
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.015365,0.058721,0.600156,0.599433
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.015287,0.058437,0.602185,0.601466
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.015319,0.058403,0.601352,0.600632
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.017616,0.064037,0.541585,0.540757
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.017574,0.063875,0.542675,0.541849
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.017598,0.063848,0.542040,0.541213
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.012740,0.053710,0.668476,0.667877
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.012676,0.053380,0.670123,0.669527
+RF,Model 1,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.012705,0.053299,0.669373,0.668776
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.019471,0.069579,0.493303,0.492388
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.019568,0.069535,0.490773,0.489853
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.019543,0.069436,0.491446,0.490527
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.021847,0.073908,0.431472,0.430445
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.021955,0.074030,0.428664,0.427632
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.021964,0.074047,0.428432,0.427399
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.016439,0.064700,0.572215,0.571442
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.016539,0.064595,0.569619,0.568841
+RF,Model 1,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.016511,0.064441,0.570337,0.569561
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.018459,0.067199,0.519643,0.518776
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.018563,0.067178,0.516932,0.516059
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.018585,0.067147,0.516355,0.515482
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.020817,0.071587,0.458275,0.457297
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.020959,0.071704,0.454584,0.453599
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.020933,0.071677,0.455255,0.454271
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.015323,0.062000,0.601257,0.600537
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.015524,0.062029,0.596024,0.595294
+RF,Model 1,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.015549,0.061964,0.595369,0.594638
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.021868,0.080888,0.430928,0.429900
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.021805,0.080687,0.432559,0.431534
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.021844,0.080674,0.431552,0.430526
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.022280,0.080781,0.420200,0.419152
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.022240,0.080634,0.421257,0.420211
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.022263,0.080599,0.420652,0.419605
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.021308,0.081155,0.445495,0.444494
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.021230,0.080886,0.447523,0.446525
+RF,Model 1,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.021249,0.080860,0.447040,0.446041
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.027097,0.088939,0.294850,0.293576
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.027485,0.089420,0.284751,0.283459
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.027476,0.089269,0.285006,0.283714
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.027373,0.088991,0.287673,0.286386
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.027694,0.089271,0.279318,0.278017
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.027739,0.089254,0.278148,0.276844
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.026527,0.088816,0.309682,0.308435
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.026944,0.089297,0.298831,0.297564
+RF,Model 1,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.026970,0.089139,0.298156,0.296888
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.025977,0.087125,0.324016,0.322795
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.026033,0.087138,0.322549,0.321325
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.026058,0.087137,0.321890,0.320665
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.026614,0.087690,0.307429,0.306178
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.026492,0.087314,0.310592,0.309347
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.026439,0.087142,0.311989,0.310747
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.025395,0.087285,0.339152,0.337958
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.025640,0.087338,0.332770,0.331565
+RF,Model 1,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.025607,0.087269,0.333635,0.332431
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.020719,0.097860,0.323144,0.314095
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.020830,0.098007,0.319515,0.310416
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.020767,0.097676,0.321560,0.312489
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.020926,0.098106,0.316370,0.307230
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.020928,0.098047,0.316321,0.307180
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.020880,0.097703,0.317873,0.308752
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.021447,0.098988,0.299362,0.289994
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.021398,0.098895,0.300962,0.291615
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.021278,0.098544,0.304860,0.295565
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.021072,0.093498,0.311599,0.302395
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.021418,0.094418,0.300307,0.290952
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.021340,0.094194,0.302864,0.293543
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.021302,0.093594,0.304073,0.294769
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.021746,0.094424,0.289578,0.280079
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.021779,0.094522,0.288517,0.279004
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.021406,0.094132,0.300699,0.291349
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.021360,0.094349,0.302200,0.292871
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.021379,0.094244,0.301575,0.292237
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.020113,0.091793,0.342917,0.334132
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.020437,0.092341,0.332342,0.323415
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.020443,0.092340,0.332155,0.323226
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.020417,0.092305,0.333008,0.324090
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.020507,0.092243,0.330066,0.321109
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.020484,0.092226,0.330800,0.321853
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.019933,0.091321,0.348820,0.340113
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.020348,0.092234,0.335265,0.326377
+RF,Model 2,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.020379,0.092373,0.334249,0.325348
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.020313,0.096395,0.336387,0.327514
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.020233,0.095896,0.339009,0.330172
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.020186,0.095640,0.340544,0.331727
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.020403,0.096132,0.333460,0.324548
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.020388,0.096049,0.333950,0.325044
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.020317,0.095677,0.336264,0.327389
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.020517,0.096041,0.329727,0.320765
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.020612,0.096237,0.326629,0.317625
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.020515,0.095989,0.329798,0.320837
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.020868,0.093008,0.318269,0.309154
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.020906,0.092649,0.317028,0.307896
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.020894,0.092647,0.317426,0.308300
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.021370,0.093638,0.301852,0.292518
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.021436,0.093593,0.299726,0.290363
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.021323,0.093299,0.303414,0.294100
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.020419,0.092224,0.332931,0.324012
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.020460,0.091971,0.331603,0.322666
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.020556,0.092128,0.328462,0.319483
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.019663,0.090025,0.357648,0.349059
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.019973,0.090511,0.347503,0.338779
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.019874,0.090400,0.350749,0.342069
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.019967,0.091078,0.347691,0.338970
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.020131,0.091149,0.342356,0.333563
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.020220,0.091180,0.339422,0.330589
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.019742,0.090826,0.355055,0.346432
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.019760,0.090670,0.354463,0.345832
+RF,Model 2,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.019818,0.090718,0.352570,0.343913
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.022011,0.100751,0.280915,0.271300
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.022045,0.100719,0.279825,0.270196
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.022113,0.100851,0.277592,0.267933
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.021930,0.100528,0.283562,0.273983
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.021925,0.100517,0.283737,0.274160
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.022010,0.100662,0.280971,0.271357
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.022653,0.101383,0.259949,0.250054
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.022634,0.101389,0.260573,0.250687
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.022619,0.101433,0.261055,0.251175
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.023766,0.099787,0.223593,0.213212
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.023849,0.100295,0.220879,0.210462
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.023752,0.100000,0.224038,0.213663
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.023562,0.099136,0.230258,0.219966
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.023626,0.099865,0.228156,0.217837
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.023622,0.099876,0.228311,0.217994
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.023981,0.099739,0.216581,0.206107
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.024039,0.100487,0.214672,0.204172
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.023958,0.100340,0.217306,0.206841
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.022802,0.098078,0.255076,0.245116
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.022812,0.098206,0.254774,0.244810
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.022779,0.098240,0.255830,0.245880
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.022893,0.098490,0.252101,0.242101
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.022862,0.098413,0.253136,0.243150
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.022872,0.098301,0.252803,0.242812
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.022482,0.097520,0.265544,0.255724
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.022767,0.098232,0.256245,0.246300
+RF,Model 2,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.022744,0.098129,0.256972,0.247038
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.017802,0.068955,0.540932,0.540078
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.017781,0.068836,0.541457,0.540604
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.017806,0.068837,0.540821,0.539967
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.019288,0.070472,0.502599,0.501673
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.019264,0.070383,0.503228,0.502304
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.019270,0.070358,0.503072,0.502148
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.016116,0.067930,0.584404,0.583630
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.016136,0.067839,0.583878,0.583103
+RF,Model 2,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.016163,0.067828,0.583197,0.582421
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.022061,0.077668,0.431094,0.430036
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.022069,0.077569,0.430884,0.429825
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.022022,0.077439,0.432110,0.431053
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.023419,0.078852,0.396073,0.394949
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.023646,0.079145,0.390219,0.389084
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.023530,0.078971,0.393217,0.392088
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.020224,0.076313,0.478460,0.477489
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.020269,0.076321,0.477297,0.476324
+RF,Model 2,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.020357,0.076362,0.475028,0.474051
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.020832,0.075290,0.462793,0.461793
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.020969,0.075424,0.459256,0.458250
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.020990,0.075361,0.458722,0.457715
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.022340,0.076727,0.423899,0.422827
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.022470,0.076920,0.420554,0.419475
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.022473,0.076891,0.420482,0.419404
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.019027,0.074023,0.509343,0.508430
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.019149,0.074153,0.506194,0.505275
+RF,Model 2,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.019171,0.074175,0.505620,0.504700
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.015707,0.059192,0.594955,0.594202
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.015676,0.058982,0.595745,0.594993
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.015700,0.058987,0.595145,0.594392
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.018083,0.064632,0.533682,0.532815
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.018061,0.064538,0.534250,0.533383
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.018073,0.064522,0.533951,0.533084
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.012982,0.053941,0.665215,0.664592
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.012989,0.053769,0.665045,0.664422
+RF,Model 2,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.013021,0.053743,0.664209,0.663584
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.019849,0.069870,0.488146,0.487194
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.019916,0.069838,0.486415,0.485459
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.019868,0.069745,0.487640,0.486687
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.022224,0.074467,0.426887,0.425820
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.022409,0.074623,0.422115,0.421040
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.022366,0.074548,0.423224,0.422150
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.016726,0.064623,0.568685,0.567882
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.016827,0.064762,0.566063,0.565256
+RF,Model 2,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.016822,0.064705,0.566191,0.565384
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.018844,0.067554,0.514052,0.513147
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.018936,0.067634,0.511678,0.510769
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.018931,0.067580,0.511812,0.510903
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.021149,0.072022,0.454621,0.453606
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.021269,0.072161,0.451509,0.450488
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.021304,0.072167,0.450630,0.449607
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.015795,0.062694,0.592673,0.591915
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.015868,0.062581,0.590802,0.590041
+RF,Model 2,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.015862,0.062448,0.590959,0.590198
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.022629,0.082389,0.416462,0.415376
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.022644,0.082373,0.416052,0.414966
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.022667,0.082368,0.415476,0.414389
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.023096,0.082347,0.404415,0.403307
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.023091,0.082331,0.404549,0.403441
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.023102,0.082319,0.404255,0.403147
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.022040,0.082540,0.431633,0.430576
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.022078,0.082522,0.430655,0.429595
+RF,Model 2,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.022102,0.082516,0.430040,0.428979
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.027314,0.089162,0.295641,0.294331
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.027701,0.089528,0.285643,0.284314
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.027699,0.089509,0.285703,0.284374
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.027863,0.089369,0.281487,0.280150
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.028004,0.089484,0.277853,0.276509
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.028015,0.089495,0.277567,0.276222
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.027040,0.089553,0.302705,0.301407
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.027354,0.089759,0.294605,0.293293
+RF,Model 2,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.027359,0.089690,0.294480,0.293167
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.026668,0.088032,0.312284,0.311004
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.026625,0.087970,0.313406,0.312129
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.026619,0.087867,0.313559,0.312282
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.026790,0.087833,0.309140,0.307854
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.027011,0.087994,0.303438,0.302141
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.026965,0.087903,0.304636,0.303342
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.026106,0.087984,0.326795,0.325542
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.026121,0.088036,0.326399,0.325145
+RF,Model 2,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.026058,0.087849,0.328014,0.326764
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002718,0.031006,0.695681,0.691556
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002721,0.031011,0.695270,0.691139
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002713,0.030965,0.696196,0.692078
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002753,0.031087,0.691762,0.687584
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002760,0.031107,0.690991,0.686802
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002757,0.031087,0.691224,0.687039
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002694,0.030914,0.698318,0.694229
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002699,0.030947,0.697794,0.693698
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002694,0.030909,0.698306,0.694217
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.004293,0.039513,0.519299,0.512783
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.004261,0.039365,0.522845,0.516377
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.004256,0.039358,0.523469,0.517010
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.004424,0.040200,0.504629,0.497914
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.004340,0.039738,0.514021,0.507433
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.004341,0.039706,0.513873,0.507283
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.004208,0.039351,0.528812,0.522425
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.004180,0.039220,0.531919,0.525574
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.004195,0.039324,0.530195,0.523827
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.003834,0.036860,0.570663,0.564843
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.003804,0.036682,0.574035,0.568261
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.003825,0.036741,0.571694,0.565888
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.003919,0.037135,0.561187,0.555239
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.003901,0.037018,0.563114,0.557192
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.003907,0.037020,0.562489,0.556558
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.003795,0.036844,0.575063,0.569302
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.003761,0.036689,0.578870,0.573161
+RF,Model 3,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.003769,0.036738,0.577897,0.572175
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002716,0.031055,0.695899,0.691777
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002717,0.031065,0.695708,0.691583
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002709,0.031010,0.696670,0.692559
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002751,0.031108,0.691965,0.687790
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002758,0.031125,0.691205,0.687019
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002755,0.031107,0.691494,0.687312
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002686,0.030985,0.699205,0.695128
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002689,0.031020,0.698898,0.694816
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002686,0.030979,0.699189,0.695111
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.004041,0.037649,0.547489,0.541355
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.004010,0.037550,0.550932,0.544845
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.004026,0.037646,0.549152,0.543041
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.004269,0.038414,0.521929,0.515448
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.004198,0.038258,0.529897,0.523525
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.004209,0.038384,0.528662,0.522273
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.004040,0.037800,0.547608,0.541476
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.003953,0.037278,0.557395,0.551395
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.003921,0.037169,0.560889,0.554937
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.003724,0.035668,0.582976,0.577323
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.003706,0.035531,0.584965,0.579340
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.003706,0.035545,0.585037,0.579412
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.003862,0.036255,0.567490,0.561627
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.003820,0.036079,0.572230,0.566432
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.003821,0.036021,0.572125,0.566325
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.003592,0.035351,0.597805,0.592353
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.003569,0.035151,0.600351,0.594934
+RF,Model 3,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.003564,0.035064,0.600884,0.595474
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002913,0.032212,0.673754,0.669332
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002917,0.032205,0.673394,0.668966
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002912,0.032192,0.673889,0.669468
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002932,0.032233,0.671638,0.667187
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002929,0.032214,0.672054,0.667609
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002926,0.032201,0.672328,0.667887
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002914,0.032214,0.673739,0.669317
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002919,0.032214,0.673183,0.668753
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002915,0.032199,0.673616,0.669192
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.005348,0.046087,0.401184,0.393067
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.005249,0.045497,0.412223,0.404256
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.005289,0.045688,0.407765,0.399737
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.005379,0.046060,0.397697,0.389533
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.005304,0.045702,0.406105,0.398055
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.005278,0.045632,0.408944,0.400933
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.005397,0.046291,0.395663,0.387471
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.005271,0.045611,0.409745,0.401745
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.005317,0.045905,0.404596,0.396525
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.004899,0.043777,0.451457,0.444022
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.004810,0.043239,0.461358,0.454057
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.004782,0.043019,0.464486,0.457227
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.004869,0.043581,0.454772,0.447381
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.004792,0.043072,0.463364,0.456090
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.004768,0.042912,0.466060,0.458823
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.004879,0.043862,0.453650,0.446244
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.004790,0.043235,0.463563,0.456292
+RF,Model 3,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.004764,0.042970,0.466479,0.459247
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.001496,0.024145,0.794902,0.794527
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.001493,0.024120,0.795350,0.794976
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.001491,0.024102,0.795650,0.795277
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.001675,0.025017,0.770415,0.769995
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.001673,0.025003,0.770615,0.770196
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.001672,0.024987,0.770816,0.770397
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.001334,0.023490,0.817147,0.816813
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.001331,0.023468,0.817582,0.817249
+RF,Model 3,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.001328,0.023450,0.817910,0.817577
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.002529,0.032256,0.653349,0.652715
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.002475,0.031941,0.660724,0.660104
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.002469,0.031914,0.661541,0.660922
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.002687,0.032950,0.631666,0.630993
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.002642,0.032589,0.637749,0.637087
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.002651,0.032607,0.636543,0.635879
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.002297,0.031515,0.685060,0.684485
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.002272,0.031266,0.688511,0.687941
+RF,Model 3,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.002275,0.031302,0.688074,0.687503
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.002160,0.029694,0.703820,0.703278
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.002141,0.029461,0.706431,0.705894
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.002144,0.029427,0.706125,0.705588
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.002359,0.030406,0.676597,0.676006
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.002341,0.030240,0.679024,0.678437
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.002346,0.030231,0.678381,0.677793
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.001976,0.029005,0.729088,0.728593
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.001970,0.028951,0.729901,0.729407
+RF,Model 3,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.001968,0.028938,0.730164,0.729670
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.001257,0.021042,0.827732,0.827417
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.001252,0.021003,0.828346,0.828032
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.001252,0.020995,0.828419,0.828106
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.001571,0.023659,0.784611,0.784217
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.001570,0.023638,0.784774,0.784381
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.001569,0.023628,0.784876,0.784483
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.000928,0.018262,0.872816,0.872584
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.000922,0.018201,0.873579,0.873348
+RF,Model 3,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.000921,0.018187,0.873730,0.873500
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.002090,0.028011,0.713552,0.713028
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.002066,0.027851,0.716801,0.716283
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.002070,0.027885,0.716212,0.715693
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.002469,0.030330,0.661502,0.660883
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.002433,0.030154,0.666421,0.665811
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.002433,0.030175,0.666403,0.665794
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.001709,0.025685,0.765694,0.765266
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.001664,0.025350,0.771822,0.771405
+RF,Model 3,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.001656,0.025303,0.772999,0.772584
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.001835,0.026000,0.748404,0.747944
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.001819,0.025835,0.750679,0.750223
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.001821,0.025826,0.750382,0.749926
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.002194,0.028296,0.699242,0.698692
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.002168,0.028112,0.702771,0.702227
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.002170,0.028089,0.702567,0.702023
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.001452,0.023522,0.800981,0.800617
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.001431,0.023276,0.803760,0.803401
+RF,Model 3,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.001430,0.023251,0.803984,0.803626
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002116,0.028957,0.709931,0.709401
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002113,0.028937,0.710391,0.709862
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002112,0.028927,0.710409,0.709880
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002143,0.028983,0.706253,0.705716
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002140,0.028968,0.706570,0.706033
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002141,0.028958,0.706559,0.706022
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002093,0.028942,0.713022,0.712497
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002090,0.028925,0.713521,0.712998
+RF,Model 3,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002089,0.028912,0.713685,0.713161
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.003778,0.040685,0.482051,0.481104
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.003697,0.040222,0.493115,0.492189
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.003703,0.040288,0.492293,0.491365
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.003830,0.040825,0.474915,0.473955
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.003758,0.040461,0.484881,0.483939
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.003737,0.040377,0.487680,0.486744
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.003828,0.041017,0.475251,0.474292
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.003703,0.040377,0.492311,0.491383
+RF,Model 3,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.003714,0.040483,0.490882,0.489952
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.003378,0.038557,0.536944,0.536097
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.003308,0.037950,0.546482,0.545653
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.003294,0.037748,0.548491,0.547665
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.003383,0.038422,0.536189,0.535342
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.003330,0.037919,0.543443,0.542609
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.003318,0.037769,0.545073,0.544242
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.003335,0.038493,0.542841,0.542005
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.003284,0.037938,0.549753,0.548930
+RF,Model 3,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.003272,0.037728,0.551393,0.550573
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002782,0.031440,0.688453,0.684230
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002776,0.031410,0.689108,0.684893
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002774,0.031387,0.689405,0.685195
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002831,0.031523,0.683041,0.678744
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002816,0.031487,0.684643,0.680368
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002814,0.031466,0.684870,0.680599
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002775,0.031359,0.689247,0.685035
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002753,0.031325,0.691716,0.687537
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002755,0.031306,0.691528,0.687347
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.004287,0.039562,0.519895,0.513387
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.004210,0.039250,0.528576,0.522186
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.004217,0.039272,0.527757,0.521355
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.004269,0.039523,0.521971,0.515491
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.004256,0.039336,0.523441,0.516982
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.004260,0.039389,0.522980,0.516514
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.004126,0.039138,0.537995,0.531733
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.004171,0.039327,0.532882,0.526550
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.004178,0.039299,0.532172,0.525831
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.003880,0.037327,0.565574,0.559685
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.003841,0.036946,0.569883,0.564053
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.003830,0.036860,0.571158,0.565345
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.003953,0.037451,0.557336,0.551336
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.003943,0.037186,0.558435,0.552449
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.003923,0.037133,0.560658,0.554702
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.003768,0.036723,0.578052,0.572333
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.003742,0.036676,0.580991,0.575311
+RF,Model 4,Holdout Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.003742,0.036680,0.580923,0.575243
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002779,0.031550,0.688779,0.684560
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002774,0.031481,0.689423,0.685214
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002771,0.031454,0.689715,0.685509
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002829,0.031572,0.683219,0.678925
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002813,0.031508,0.684949,0.680679
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002811,0.031485,0.685247,0.680980
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002772,0.031586,0.689592,0.685384
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002753,0.031483,0.691693,0.687514
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002754,0.031438,0.691554,0.687373
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.004086,0.037941,0.542475,0.536273
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.004062,0.037745,0.545103,0.538937
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.004038,0.037656,0.547879,0.541751
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.004229,0.038614,0.526381,0.519961
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.004180,0.038357,0.531887,0.525542
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.004182,0.038346,0.531646,0.525297
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.003895,0.037317,0.563807,0.557894
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.003889,0.037028,0.564542,0.558640
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.003892,0.036990,0.564146,0.558238
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.003671,0.035573,0.588971,0.583399
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.003685,0.035512,0.587323,0.581729
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.003688,0.035496,0.586984,0.581385
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.003843,0.036251,0.569661,0.563828
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.003807,0.036011,0.573648,0.567868
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.003799,0.035968,0.574540,0.568773
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.003636,0.035529,0.592862,0.587343
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.003596,0.035281,0.597350,0.591892
+RF,Model 4,Holdout Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.003578,0.035123,0.599293,0.593862
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002934,0.032335,0.671463,0.667010
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002939,0.032342,0.670932,0.666472
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002938,0.032326,0.670996,0.666536
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002962,0.032381,0.668347,0.663852
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002958,0.032354,0.668789,0.664299
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002956,0.032337,0.668996,0.664510
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002943,0.032350,0.670448,0.665981
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002937,0.032343,0.671121,0.666663
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002939,0.032338,0.670871,0.666410
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.005434,0.046341,0.391541,0.383293
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.005314,0.045730,0.404972,0.396907
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.005319,0.045877,0.404343,0.396269
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.005474,0.046643,0.386970,0.378660
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.005291,0.045583,0.407516,0.399485
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.005302,0.045680,0.406283,0.398235
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.005436,0.046457,0.391226,0.382974
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.005329,0.045820,0.403262,0.395173
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.005304,0.045767,0.406104,0.398054
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.004803,0.043771,0.462179,0.454888
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.004808,0.043311,0.461545,0.454246
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.004794,0.043125,0.463139,0.455862
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.004828,0.043895,0.459410,0.452082
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.004790,0.043295,0.463608,0.456337
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.004791,0.043126,0.463487,0.456215
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.004826,0.043947,0.459562,0.452237
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.004826,0.043424,0.459597,0.452271
+RF,Model 4,Holdout Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.004801,0.043177,0.462392,0.455105
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.001525,0.024317,0.792745,0.792354
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.001522,0.024314,0.793046,0.792656
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.001523,0.024306,0.793004,0.792614
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.001706,0.025188,0.768086,0.767649
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.001702,0.025194,0.768626,0.768191
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.001702,0.025190,0.768580,0.768144
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.001360,0.023649,0.815056,0.814708
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.001358,0.023642,0.815425,0.815077
+RF,Model 4,Training Set,"max_depth = 10, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.001358,0.023641,0.815351,0.815004
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.002479,0.032095,0.663038,0.662404
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.002455,0.031862,0.666284,0.665656
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.002461,0.031893,0.665376,0.664746
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.002683,0.032794,0.635221,0.634534
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.002656,0.032537,0.638960,0.638280
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.002652,0.032540,0.639473,0.638794
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.002298,0.031463,0.687548,0.686960
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.002288,0.031367,0.688893,0.688307
+RF,Model 4,Training Set,"max_depth = 10, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.002295,0.031392,0.688059,0.687472
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.002217,0.030190,0.698589,0.698021
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.002180,0.029773,0.703666,0.703108
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.002175,0.029676,0.704252,0.703695
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.002402,0.030758,0.673512,0.672897
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.002377,0.030485,0.676848,0.676239
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.002372,0.030414,0.677538,0.676931
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.001994,0.029153,0.728921,0.728410
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.001977,0.028988,0.731270,0.730764
+RF,Model 4,Training Set,"max_depth = 10, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.001980,0.028981,0.730888,0.730381
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.001283,0.021218,0.825584,0.825255
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.001279,0.021193,0.826181,0.825853
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.001279,0.021188,0.826084,0.825756
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.001602,0.023841,0.782168,0.781758
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.001597,0.023827,0.782843,0.782434
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.001598,0.023824,0.782791,0.782382
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.000949,0.018421,0.870985,0.870742
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.000946,0.018400,0.871430,0.871188
+RF,Model 4,Training Set,"max_depth = 15, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.000948,0.018405,0.871164,0.870921
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.002116,0.028254,0.712367,0.711825
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.002095,0.028081,0.715170,0.714634
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.002093,0.028065,0.715415,0.714879
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.002492,0.030553,0.661230,0.660592
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.002454,0.030261,0.666394,0.665766
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.002463,0.030321,0.665173,0.664543
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.001702,0.025736,0.768549,0.768113
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.001683,0.025484,0.771231,0.770801
+RF,Model 4,Training Set,"max_depth = 15, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.001680,0.025471,0.771641,0.771211
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.001838,0.026072,0.750184,0.749713
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.001835,0.025978,0.750537,0.750067
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.001837,0.025951,0.750255,0.749785
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.002209,0.028504,0.699742,0.699177
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.002201,0.028338,0.700769,0.700205
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.002194,0.028277,0.701672,0.701110
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.001471,0.023648,0.800057,0.799681
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.001456,0.023490,0.802126,0.801753
+RF,Model 4,Training Set,"max_depth = 15, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.001451,0.023410,0.802807,0.802435
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 100",0.002143,0.029123,0.708643,0.708094
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 300",0.002145,0.029111,0.708354,0.707805
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 10, n_estimators = 500",0.002146,0.029111,0.708239,0.707690
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 100",0.002175,0.029164,0.704282,0.703726
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 300",0.002175,0.029143,0.704299,0.703742
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 20, n_estimators = 500",0.002174,0.029141,0.704436,0.703879
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 100",0.002122,0.029121,0.711541,0.710998
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 300",0.002122,0.029097,0.711563,0.711020
+RF,Model 4,Training Set,"max_depth = 5, max_features = 1.0, min_samples_leaf = 5, n_estimators = 500",0.002122,0.029100,0.711454,0.710911
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 100",0.003854,0.041227,0.476022,0.475035
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 300",0.003755,0.040551,0.489559,0.488598
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 10, n_estimators = 500",0.003759,0.040610,0.488934,0.487972
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 100",0.003882,0.041334,0.472215,0.471221
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 300",0.003770,0.040531,0.487479,0.486514
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 20, n_estimators = 500",0.003775,0.040555,0.486801,0.485835
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 100",0.003831,0.041231,0.479126,0.478145
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 300",0.003743,0.040612,0.491094,0.490136
+RF,Model 4,Training Set,"max_depth = 5, max_features = log2, min_samples_leaf = 5, n_estimators = 500",0.003728,0.040542,0.493215,0.492261
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 100",0.003371,0.038601,0.541726,0.540863
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 300",0.003336,0.038134,0.546440,0.545587
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 10, n_estimators = 500",0.003326,0.038012,0.547793,0.546942
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 100",0.003407,0.038751,0.536863,0.535991
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 300",0.003353,0.038175,0.544115,0.543257
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 20, n_estimators = 500",0.003342,0.037997,0.545676,0.544820
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 100",0.003361,0.038647,0.543021,0.542160
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 300",0.003332,0.038188,0.547014,0.546161
+RF,Model 4,Training Set,"max_depth = 5, max_features = sqrt, min_samples_leaf = 5, n_estimators = 500",0.003312,0.038000,0.549725,0.548877
+Ridge,Model 1,Holdout Set,alpha = 1.0,0.053340,0.177172,-0.742558,-0.767194
+Ridge,Model 1,Training Set,alpha = 1.0,0.027443,0.091609,0.285848,0.284485
+Ridge,Model 2,Holdout Set,alpha = 1.0,0.030045,0.129124,0.018482,0.004605
+Ridge,Model 2,Training Set,alpha = 1.0,0.027823,0.092316,0.282499,0.281088
+Ridge,Model 3,Holdout Set,alpha = 1.0,0.009280,0.084792,-0.039175,-0.054070
+Ridge,Model 3,Training Set,alpha = 1.0,0.002185,0.029436,0.700525,0.699947
+Ridge,Model 4,Holdout Set,alpha = 1.0,0.003071,0.035662,0.656127,0.651198
+Ridge,Model 4,Training Set,alpha = 1.0,0.002207,0.029645,0.699969,0.699372
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.023558,0.105502,0.230382,0.219501
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.021552,0.096838,0.295926,0.285972
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.021163,0.094162,0.308623,0.298849
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.022365,0.103136,0.269377,0.259048
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.020467,0.093154,0.331366,0.321913
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.020749,0.091903,0.322154,0.312570
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.022123,0.101761,0.277284,0.267066
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.021982,0.093915,0.281874,0.271722
+XGB,Model 1,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.022317,0.092316,0.270922,0.260614
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.020429,0.094131,0.332623,0.323188
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.020895,0.091923,0.317384,0.307733
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.023333,0.092264,0.237726,0.226949
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.020326,0.091599,0.335973,0.326585
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.021275,0.090677,0.304978,0.295152
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.021940,0.091561,0.283259,0.273126
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.021763,0.092259,0.289026,0.278975
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.022443,0.092819,0.266806,0.256440
+XGB,Model 1,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.022630,0.093020,0.260698,0.250245
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.021062,0.091949,0.311939,0.302212
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.025419,0.092612,0.169603,0.157863
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.028445,0.093918,0.070723,0.057585
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.020772,0.091185,0.321411,0.311817
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.023025,0.092894,0.247818,0.237183
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.024204,0.093970,0.209297,0.198118
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.023043,0.093181,0.247226,0.236583
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.023496,0.094125,0.232412,0.221560
+XGB,Model 1,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.023716,0.094588,0.225217,0.214263
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.025901,0.090148,0.325985,0.324699
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.020622,0.080488,0.463365,0.462341
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.018619,0.076885,0.515491,0.514566
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.022064,0.084595,0.425827,0.424731
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.015552,0.073785,0.595295,0.594523
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.013047,0.069938,0.660468,0.659820
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.018853,0.079993,0.509383,0.508446
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.011121,0.066779,0.710594,0.710041
+XGB,Model 1,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.008725,0.061966,0.772948,0.772515
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.018960,0.076926,0.506594,0.505652
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.014961,0.071487,0.610679,0.609936
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.013153,0.069221,0.657718,0.657065
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.013093,0.069946,0.659294,0.658644
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.008588,0.062295,0.776526,0.776099
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.006889,0.057872,0.820741,0.820399
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.008649,0.061764,0.774923,0.774493
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.004847,0.050286,0.873864,0.873623
+XGB,Model 1,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.003323,0.042232,0.913529,0.913364
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.016073,0.073051,0.581744,0.580946
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.012240,0.068274,0.681489,0.680881
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.010528,0.065778,0.726029,0.725506
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.010343,0.065285,0.730850,0.730336
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.006473,0.056364,0.831548,0.831226
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.004897,0.050257,0.872560,0.872316
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.006212,0.055465,0.838347,0.838038
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.002935,0.039775,0.923612,0.923466
+XGB,Model 1,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.001551,0.029049,0.959639,0.959561
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.025399,0.106449,0.170238,0.158507
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.022844,0.095035,0.253730,0.243179
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.022040,0.092390,0.279969,0.269789
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.024006,0.103656,0.215739,0.204651
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.021439,0.093366,0.299607,0.289705
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.020902,0.091434,0.317162,0.307508
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.023769,0.101419,0.223497,0.212519
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.023502,0.094018,0.232216,0.221361
+XGB,Model 2,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.023620,0.092412,0.228372,0.217463
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.022072,0.092665,0.278925,0.268730
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.021423,0.091223,0.300141,0.290247
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.022099,0.091450,0.278065,0.267858
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.020709,0.091453,0.323448,0.313883
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.022161,0.092074,0.276041,0.265805
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.022546,0.091821,0.263460,0.253047
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.023147,0.092984,0.243820,0.233129
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.022894,0.091227,0.252072,0.241497
+XGB,Model 2,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.023054,0.091373,0.246844,0.236196
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.022724,0.092786,0.257632,0.247137
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.024948,0.093620,0.184995,0.173473
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.027354,0.095815,0.106379,0.093745
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.022135,0.091724,0.276892,0.266669
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.023684,0.093003,0.226259,0.215320
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.024084,0.093820,0.213192,0.202068
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.023880,0.093298,0.219857,0.208828
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.024108,0.093508,0.212427,0.201292
+XGB,Model 2,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.024409,0.094295,0.202577,0.191303
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.026790,0.092491,0.309137,0.307778
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.020977,0.082521,0.459047,0.457983
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.018779,0.078226,0.515732,0.514780
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.022712,0.085647,0.414309,0.413157
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.015771,0.074709,0.593312,0.592513
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.013332,0.070599,0.656192,0.655515
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.019404,0.080803,0.499627,0.498643
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.011148,0.067227,0.712521,0.711956
+XGB,Model 2,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.008599,0.062071,0.778241,0.777805
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.018780,0.078127,0.515718,0.514766
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.015009,0.071948,0.612954,0.612193
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.013229,0.069644,0.658845,0.658175
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.013447,0.070614,0.653222,0.652540
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.008745,0.062709,0.774478,0.774035
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.007058,0.058344,0.817978,0.817620
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.008582,0.062029,0.778701,0.778266
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.004868,0.050340,0.874455,0.874208
+XGB,Model 2,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.003337,0.042371,0.913947,0.913777
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.016179,0.074024,0.582783,0.581963
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.012525,0.068740,0.676999,0.676364
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.010612,0.066206,0.726350,0.725812
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.010474,0.065782,0.729899,0.729368
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.006420,0.056470,0.834453,0.834127
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.004834,0.050193,0.875339,0.875094
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.006124,0.055401,0.842066,0.841756
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.002837,0.039251,0.926849,0.926705
+XGB,Model 2,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.001544,0.028992,0.960173,0.960094
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.004290,0.042192,0.519596,0.512710
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.003080,0.033148,0.655060,0.650115
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.002921,0.032059,0.672903,0.668215
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.003926,0.040128,0.560355,0.554053
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.002866,0.031849,0.679075,0.674475
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.002813,0.031432,0.684976,0.680461
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.003987,0.039630,0.553562,0.547163
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.002868,0.031897,0.678857,0.674254
+XGB,Model 3,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.002865,0.031687,0.679232,0.674634
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.002918,0.032079,0.673283,0.668601
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.002822,0.031578,0.684017,0.679488
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.002803,0.031630,0.686140,0.681642
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.002757,0.031207,0.691279,0.686854
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.002783,0.031700,0.688347,0.683880
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.002797,0.031954,0.686770,0.682280
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.002872,0.031839,0.678404,0.673794
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.002894,0.032299,0.675962,0.671318
+XGB,Model 3,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.002908,0.032574,0.674349,0.669682
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.002849,0.031691,0.680996,0.676423
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.002799,0.031793,0.686564,0.682072
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.002812,0.031990,0.685167,0.680654
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.002774,0.031431,0.689345,0.684892
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.002862,0.032359,0.679545,0.674952
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.002915,0.032866,0.673614,0.668936
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.002918,0.031940,0.673188,0.668503
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.003003,0.032776,0.663779,0.658959
+XGB,Model 3,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.003054,0.033290,0.658035,0.653134
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.003244,0.038162,0.555280,0.554421
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.002242,0.029603,0.692588,0.691995
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.002049,0.028358,0.719056,0.718513
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.002852,0.035889,0.609059,0.608304
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.001811,0.027247,0.751798,0.751319
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.001603,0.026026,0.780261,0.779837
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.002506,0.034380,0.656453,0.655789
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.001331,0.024660,0.817486,0.817134
+XGB,Model 3,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.001111,0.022936,0.847631,0.847336
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.002049,0.028353,0.719094,0.718551
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.001794,0.027055,0.754030,0.753555
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.001666,0.026479,0.771610,0.771169
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.001604,0.026030,0.780158,0.779734
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.001244,0.023977,0.829433,0.829103
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.001052,0.022546,0.855775,0.855497
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.001103,0.022880,0.848810,0.848518
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.000726,0.019143,0.900521,0.900329
+XGB,Model 3,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.000520,0.016354,0.928679,0.928541
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.001889,0.027473,0.741087,0.740587
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.001604,0.026204,0.780133,0.779708
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.001445,0.025407,0.801884,0.801502
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.001386,0.024886,0.809981,0.809614
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.000970,0.021788,0.866959,0.866702
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.000754,0.019566,0.896623,0.896424
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.000881,0.020867,0.879259,0.879026
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.000436,0.015033,0.940220,0.940105
+XGB,Model 3,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.000240,0.011141,0.967154,0.967091
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.004296,0.042184,0.518921,0.512025
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.003106,0.033165,0.652246,0.647262
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.002941,0.032104,0.670703,0.665983
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.003989,0.040301,0.553323,0.546921
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.002883,0.032049,0.677153,0.672526
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.002842,0.031694,0.681801,0.677241
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.004004,0.039849,0.551640,0.545214
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.002938,0.032314,0.670958,0.666241
+XGB,Model 4,Holdout Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.002939,0.032154,0.670897,0.666180
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.002928,0.032028,0.672090,0.667390
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.002804,0.031519,0.685959,0.681457
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.002795,0.031661,0.687051,0.682566
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.002838,0.031676,0.682222,0.677667
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.002837,0.031884,0.682280,0.677726
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.002882,0.032260,0.677226,0.672600
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.002934,0.032108,0.671498,0.666790
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.002975,0.032677,0.666884,0.662110
+XGB,Model 4,Holdout Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.003025,0.033198,0.661309,0.656454
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.002866,0.031937,0.679075,0.674475
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.002830,0.032049,0.683117,0.678575
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.002838,0.032239,0.682149,0.677594
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.002855,0.031740,0.680265,0.675682
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.002951,0.032508,0.669589,0.664853
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.002997,0.033025,0.664363,0.659552
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.003093,0.032895,0.653689,0.648725
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.003186,0.033838,0.643247,0.638134
+XGB,Model 4,Holdout Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.003226,0.034385,0.638785,0.633608
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 100",0.003279,0.038382,0.554175,0.553288
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 300",0.002265,0.029768,0.692094,0.691481
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 3, n_estimators = 500",0.002070,0.028489,0.718635,0.718075
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 100",0.002875,0.036102,0.609086,0.608308
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 300",0.001830,0.027414,0.751278,0.750783
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 5, n_estimators = 500",0.001627,0.026199,0.778849,0.778409
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 100",0.002528,0.034559,0.656277,0.655593
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 300",0.001349,0.024803,0.816666,0.816302
+XGB,Model 4,Training Set,"learning_rate = 0.01, max_depth = 7, n_estimators = 500",0.001128,0.023074,0.846601,0.846296
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 100",0.002064,0.028460,0.719355,0.718796
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 300",0.001804,0.027122,0.754741,0.754253
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 3, n_estimators = 500",0.001672,0.026514,0.772730,0.772278
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 100",0.001626,0.026202,0.778965,0.778525
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 300",0.001255,0.024111,0.829351,0.829011
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 5, n_estimators = 500",0.001049,0.022553,0.857398,0.857115
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 100",0.001128,0.023081,0.846698,0.846393
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 300",0.000735,0.019227,0.900112,0.899913
+XGB,Model 4,Training Set,"learning_rate = 0.05, max_depth = 7, n_estimators = 500",0.000511,0.016239,0.930531,0.930393
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 100",0.001897,0.027561,0.742173,0.741660
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 300",0.001608,0.026289,0.781409,0.780974
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 3, n_estimators = 500",0.001440,0.025392,0.804231,0.803841
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 100",0.001408,0.025048,0.808631,0.808250
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 300",0.000970,0.021855,0.868134,0.867872
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 5, n_estimators = 500",0.000740,0.019454,0.899350,0.899150
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 100",0.000898,0.021017,0.877881,0.877638
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 300",0.000426,0.014885,0.942025,0.941909
+XGB,Model 4,Training Set,"learning_rate = 0.1, max_depth = 7, n_estimators = 500",0.000236,0.011052,0.967872,0.967808

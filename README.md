@@ -21,8 +21,8 @@ Final_Project/
 │   ├── __init__.py         # Makes 'src' an importable package (can be left empty)
 │   ├── data_loader.py      # Responsible for fetching all external data (FRED API, Google Drive reads)
 │   ├── model_cleaner.py    # Handles frequency conversion, feature engineering, and data cleaning/preprocessing
-│   ├── model_runner.py     # Responsible for model training and prediction
-│   └── function.py         # Stores utility/helper functions
+│   ├── algo_runner.py      # Responsible for model training and prediction
+│   └── utility_function.py # Stores utility/helper functions
 │
 ├── data/                   # Dataset repository
 │   ├── raw/                # Original downloaded files (Not uploaded to GitHub)
@@ -30,11 +30,11 @@ Final_Project/
 │
 └── experiments/            # Dedicated directory for storing execution results
     ├── <start_year>_<end_year>_<has_esg>_<exe_date>_<exe_time>/
-    │   ├── models/         # Stores Model1~4.csv or .pkl model files generated during this run
-    │   ├── figures/        # Stores feature importance charts (.png) generated during this run
+    │   ├── models/         # Stores Model1~4.csv or .pkl model files generated during this run (typically empty)
+    │   ├── figures/        # Stores feature importance charts (.jpg) generated during this run
     │   ├── evaluation.csv  # Evaluation results table for all parameter combinations from this run
     │   ├── importance.csv  # Feature importance ranking table from this run
-    │   └── config.json     # The "ID card" of this experiment (records parameters and variable configurations at the time)
+    │   └── config.json     # records parameters and variable configurations at the time
     │
     └──  ...                # Each execution generates a new directory, ensuring results are never overwritten
 ```
@@ -107,10 +107,10 @@ You can customize the pipeline execution by modifying the global variables in `c
 
 | Variable | Type | Description |
 | --- | --- | --- |
-| `IS_DEBUG` | Boolean | `True` for quick testing with subset data; `False` for full run. |
+| `IS_DEBUG` | Boolean | `True` for print out the results of every stage. |
 | `HAS_ESG` | Boolean | Enable/Disable ESG data integration. |
-| `HAS_TECH_IDX` | Boolean | Enable/Disable technology indices features. |
 | `IS_LARGE_DATASET` | Boolean | Toggle between large historical data (1998+) and small data (2018+). |
+| `HAS_BACKUP_REGRESSORS` | Boolean | Whether to save regressor models. |
 | `TOP_N_FEATURES` | Integer | Number of top features to keep after feature selection. |
 
 ### Hyperparameter Tuning Grids
@@ -129,6 +129,25 @@ XGB_GRID = {
     "n_estimators": [100, 300, 500],
     "max_depth": [3, 5, 7],
     "learning_rate": [0.01, 0.05, 0.1]
+}
+
+KNN_GRID = {
+    "n_neighbors": [5],
+    "weights": ["distance"]
+}
+
+LR_GRID = {
+    "OLS": {
+        "fit_intercept": [True, False] 
+    },
+    "Lasso": {
+        # "alpha": [0.001, 0.005, 0.01, 0.1, 1.0] 
+        "alpha": [0.005]
+    },
+    "Ridge": {
+        # "alpha": [0.1, 1.0, 10.0, 100.0]
+        "alpha": [1.0]
+    }
 }
 ```
 

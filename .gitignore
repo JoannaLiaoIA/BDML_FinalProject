@@ -18,6 +18,7 @@ processed/
 log/
 data_fetch/
 test.py
+project.py
 
 
 # Other

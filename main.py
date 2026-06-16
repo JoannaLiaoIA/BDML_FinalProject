@@ -1,19 +1,18 @@
 import os
 import json
 import joblib
-import numpy as np
 import pandas as pd
 import config as myCfg
-import src.function as myFn
+import src.utility_function as myFn
 import src.data_loader as myLoader
-import src.model_runner as myRunner
+import src.algo_runner as myRunner
 import src.model_cleaner as myCleaner
 from datetime import datetime
 from sklearn.model_selection import ParameterGrid
 
 
 def main():
-    print("\n##### Initializing #####\n")
+    print("\n########## Initializing ##########\n")
     print(f"Target period: {myCfg.START_DATE} to {myCfg.END_DATE}")
     print(f"Training period: {myCfg.TRAIN_START_DATE} to {myCfg.TRAIN_END_DATE}")
     print(f"Holdout period: {myCfg.HOLDOUT_START_DATE} to {myCfg.HOLDOUT_END_DATE}")
@@ -21,12 +20,11 @@ def main():
 
     print(f"Debug mode: {'ON' if myCfg.IS_DEBUG else 'OFF'}")
     print(f"Using ESG data: {'YES' if myCfg.HAS_ESG else 'NO'}")
-    print(f"Using Technology Index data: {'YES' if myCfg.HAS_TECH_IDX else 'NO'}")
     print(f"Using large dataset: {'YES' if myCfg.IS_LARGE_DATASET else 'NO'}")
-    print(f"Using backup regressors: {'YES' if myCfg.HAS_BACKUP_REGRESSORS else 'NO'}")
+    print(f"Saving regressors: {'YES' if myCfg.HAS_BACKUP_REGRESSORS else 'NO'}")
     print()
 
-    print(f"Using template file name: {myCfg.TEMPLATE_FILE_NAME}")
+    print(f"Using template file name: {myCfg.TEMPLATE_DIR_NAME}")
     print()
 
     print(f"Initialization complete!")
@@ -34,7 +32,8 @@ def main():
     # +-----------+
     # | Load data |
     # +-----------+
-    print("\n##### Loading Data #####\n")
+    print("\n########## Loading Data ##########\n")
+
     df_daily_transaction = myLoader.load_daily_transaction()
     df_company_category = myLoader.load_company_category()
     df_tech_idx = myLoader.load_tech_index()
@@ -50,7 +49,7 @@ def main():
     # +---------------------------+
     # | Convert to Quarterly Data |
     # +---------------------------+
-    print("\n##### Converting to Quarterly Data #####\n")
+    print("\n########## Converting to Quarterly Data ##########\n")
 
     # Annually -> Quarterly
     df_esg_quarterly = myCleaner.annual_to_quarterly(
@@ -117,7 +116,7 @@ def main():
     # +-----------------------------------------------+
     # | Split, Merge and Extract Time Series Features |
     # +-----------------------------------------------+
-    print("\n##### Extracting Time Series Features and Merging #####\n")
+    print("\n########## Extracting Time Series Features and Merging ##########\n")
 
     # DV: y_{t + 1}
     df_dv = myCleaner.add_dv_features(
@@ -150,7 +149,7 @@ def main():
     # +------------------+
     # | Modeling Dataset |
     # +------------------+
-    print("\n##### Modeling Datasets #####\n")
+    print("\n########## Modeling Datasets ##########\n")
 
     # Lag
     df_op_lag = myCleaner.create_lag_features(
@@ -203,11 +202,14 @@ def main():
         has_esg = myCfg.HAS_ESG
     )
 
+    print("Modeling datasets created successfully!")
+
     # +---------------------------+
     # | Assemble Modeling Dataset |
     # +---------------------------+
-    print("\n##### Assembling Modeling Datasets #####\n")
-    models_dict = myRunner.assemble_final_models(
+    print("\n########## Assembling Modeling Datasets ##########\n")
+
+    models_dict = myCleaner.assemble_final_models(
         model_ret = model_return_general,
         model_vol = model_volatility_general,
         market_QoQ = df_market_QoQ_lag,
@@ -219,102 +221,94 @@ def main():
     # +----------------+
     # | Run Algorithms |
     # +----------------+
-    print("\n##### Running Algorithms #####\n")
+    print("\n########## Running Algorithms ##########\n")
 
     all_evaluations = []
     all_importances = []
 
     # Experiment Tracking
     run_time = datetime.now().strftime("%y%m%d_%H%M")
-    exp_name = f"{myCfg.TEMPLATE_FILE_NAME}_{run_time}"
+    exp_name = f"{myCfg.TEMPLATE_DIR_NAME}_{run_time}"
     exp_dir = f"./experiments/{exp_name}"
 
     os.makedirs(exp_dir, exist_ok = True)
     os.makedirs(f"{exp_dir}/models", exist_ok = True)
     os.makedirs(f"{exp_dir}/figures", exist_ok = True)
 
-    for label, df in models_dict.items():
-        print(f"\nTraining {label}...")
+    for model_label, df in models_dict.items():
+        print(f"\nTraining {model_label}...")
 
-        # --- 1. Random Forest (使用 Grid Search) ---
+        # --- Random Forest ---
         for params in ParameterGrid(myCfg.RF_GRID):
-            # 動態產生帶有參數的標籤，例如 "Model 1 [n_estimators=100, max_depth=5]"
-            param_str = ", ".join(f"{k} = {v}" for k, v in params.items())
-            algo_label = f"{label} ({param_str} - {df["Year"].min()}Q{df["Quarter"].min()} to {df["Year"].max()}Q{df["Quarter"].max()})"
-            temp_label = f"{algo_label.replace(" ", "_").replace(',', '')}"
-            
-            # 使用 **params 進行字典解包
-            eva_rf, imp_rf, fig_rf = myRunner.run_random_forest(
+            rf_sample = myFn.Sample(
                 model = df,
-                label = algo_label,
-                n_estimators = params["n_estimators"],
-                max_depth = params["max_depth"],
-                min_samples_leaf = params["min_samples_leaf"],
-                max_features = params["max_features"])
-            
-            all_evaluations.append(eva_rf)
-            all_importances.append(imp_rf)
-            fig_rf.savefig(
-                f"{exp_dir}/figures/RF_{temp_label}.jpg",
-                format = "jpg",
-                bbox_inches = 'tight'
-            )
+                model_label = model_label,
+                algorithm = "RF",
+                parameters = params)
 
-        # --- 2. XGBoost (使用 Grid Search) ---
+            rf_eva, rf_imp, rf_fig = myRunner.run_random_forest(rf_sample)
+            
+            all_evaluations.append(rf_eva)
+            all_importances.append(rf_imp)
+            rf_fig.savefig(
+                f"{exp_dir}/figures/{rf_sample.filename_label}.jpg",
+                format = "jpg",
+                bbox_inches = "tight")
+
+        # --- XGBoost ---
         for params in ParameterGrid(myCfg.XGB_GRID):
-            param_str = ", ".join(f"{k} = {v}" for k, v in params.items())
-            algo_label = f"{label} ({param_str}) - {df["Year"].min()}Q{df["Quarter"].min()} to {df["Year"].max()}Q{df["Quarter"].max()})"
-            temp_label = f"{algo_label.replace(" ", "_").replace(',', '')}"
-            
-            eva_xgb, imp_xgb, fig_xgb, xgb_result, xgb_cols = myRunner.run_xgboost(
+            xgb_sample = myFn.Sample(
                 model = df,
-                label = algo_label,
-                n_estimators = params["n_estimators"],
-                max_depth = params["max_depth"],
-                learning_rate = params["learning_rate"]
-            )
+                model_label = model_label,
+                algorithm = "XGB",
+                parameters = params)
+            
+            xgb_eva, xgb_imp, xgb_fig, xgb_result, xgb_cols = myRunner.run_xgboost(xgb_sample)
 
-            all_evaluations.append(eva_xgb)
-            all_importances.append(imp_xgb)
-            fig_xgb.savefig(
-                f"{exp_dir}/figures/XGB_{temp_label}.jpg",
+            all_evaluations.append(xgb_eva)
+            all_importances.append(xgb_imp)
+            xgb_fig.savefig(
+                f"{exp_dir}/figures/{xgb_sample.filename_label}.jpg",
                 format = "jpg",
-                bbox_inches = 'tight'
+                bbox_inches = "tight"
             )
             if myCfg.HAS_BACKUP_REGRESSORS:
                 joblib.dump(
                     xgb_result,
-                    f"{exp_dir}/models/XGB_{temp_label}.pkl"
+                    f"{exp_dir}/models/{xgb_sample.filename_label}.pkl"
                 )
                 joblib.dump(
                     xgb_cols,
-                    f"{exp_dir}/models/XGB_{temp_label}_cols.pkl"
+                    f"{exp_dir}/models/{xgb_sample.filename_label}_cols.pkl"
                 )
 
-        # --- 3. KNN (不調參，維持單次執行) ---
-        eva_knn = myRunner.run_knn(
-            model = df,
-            label = f"{label} - {df['Year'].min()}Q{df['Quarter'].min()} to {df['Year'].max()}Q{df['Quarter'].max()}",
-            n_neighbors = 5,
-            weights = "distance"
-        )
-        all_evaluations.append(eva_knn)
+        # --- KNN ---
+        for params in ParameterGrid(myCfg.KNN_GRID):
+            knn_sample = myFn.Sample(
+                model = df,
+                model_label = model_label,
+                algorithm = "KNN",
+                parameters = params)
+            eva_knn = myRunner.run_knn(knn_sample)
+            all_evaluations.append(eva_knn)
 
-        # --- 4. Linear Regressions (不調參，維持單次執行) ---
-        eva_lr_dict = myRunner.run_linear_regressions(
-            model = df,
-            label = f"{label} - {df['Year'].min()}Q{df['Quarter'].min()} to {df['Year'].max()}Q{df['Quarter'].max()}"
-        )
-        all_evaluations.append(eva_lr_dict["OLS"])
-        all_evaluations.append(eva_lr_dict["Lasso"])
-        all_evaluations.append(eva_lr_dict["Ridge"])
+        # --- Linear Regressions  ---
+        for algo_name, param_grid in myCfg.LR_GRID.items():
+            for params in ParameterGrid(param_grid):
+                lr_sample = myFn.Sample(
+                    model = df,
+                    model_label = model_label,
+                    algorithm = algo_name,
+                    parameters = params)
+                lr_eva = myRunner.run_linear_regression(lr_sample)
+                all_evaluations.append(lr_eva)
 
     print("\nAggregating evaluation metrics...")
-    final_evaluation = pd.concat(all_evaluations, ignore_index = True)
+    final_evaluation = pd.concat(all_evaluations, ignore_index = True).sort_values(by = ["Algorithm", "Model", "Dataset", "Parameters"])
     final_importance = pd.concat(all_importances, ignore_index = True)
 
-    final_evaluation.to_csv(f"{exp_dir}/Eva_{myCfg.TEMPLATE_FILE_NAME}.csv", index = False)
-    final_importance.to_csv(f"{exp_dir}/Imp_{myCfg.TEMPLATE_FILE_NAME}.csv", index = False)
+    final_evaluation.to_csv(f"{exp_dir}/Eva_{myCfg.TEMPLATE_DIR_NAME}.csv", index = False)
+    final_importance.to_csv(f"{exp_dir}/Imp_{myCfg.TEMPLATE_DIR_NAME}.csv", index = False)
 
     config_dict = {key: getattr(myCfg, key) for key in dir(myCfg) if key.isupper()}
     

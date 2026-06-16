@@ -1,11 +1,10 @@
 import os
-import src.function as myFn
+import src.utility_function as myFn
 from dotenv import load_dotenv
 
 IS_DEBUG = False
 
 HAS_ESG = False
-HAS_TECH_IDX = True
 IS_LARGE_DATASET = True
 HAS_BACKUP_REGRESSORS = False
 
@@ -15,13 +14,38 @@ RF_GRID = {
     "n_estimators": [100, 300, 500],
     "max_depth": [5, 10, 15],
     "min_samples_leaf": [5, 10, 20],
-    "max_features": ["sqrt", "log2"]
+    "max_features": ["sqrt", "log2", 1.0]
 }
 
 XGB_GRID = {
     "n_estimators": [100, 300, 500],
     "max_depth": [3, 5, 7],
     "learning_rate": [0.01, 0.05, 0.1]
+}
+
+# KNN_GRID = {
+#     "n_neighbors": [3, 5, 7],
+#     "weights": ["uniform", "distance"],
+#     "metric": ["euclidean", "manhattan"]
+# }
+
+KNN_GRID = {
+    "n_neighbors": [5],
+    "weights": ["distance"]
+}
+
+LR_GRID = {
+    "OLS": {
+        "fit_intercept": [True, False] 
+    },
+    "Lasso": {
+        # "alpha": [0.001, 0.005, 0.01, 0.1, 1.0] 
+        "alpha": [0.005]
+    },
+    "Ridge": {
+        # "alpha": [0.1, 1.0, 10.0, 100.0]
+        "alpha": [1.0]
+    }
 }
 
 load_dotenv()
@@ -61,11 +85,7 @@ HOLDOUT_START_YEAR, HOLDOUT_END_YEAR, HOLDOUT_START_QUARTER, HOLDOUT_END_QUARTER
 start_year_label = str((TRAINING_START_YEAR % 100)).zfill(2)
 end_year_label = str((HOLDOUT_END_YEAR % 100)).zfill(2)
 
-if HAS_ESG and HAS_TECH_IDX:
-    TEMPLATE_FILE_NAME = f"{start_year_label}_{end_year_label}_ESG"
-elif HAS_ESG and not HAS_TECH_IDX:
-    TEMPLATE_FILE_NAME = f"{start_year_label}_{end_year_label}_ESG_NoTech"
-elif not HAS_ESG and HAS_TECH_IDX:
-    TEMPLATE_FILE_NAME = f"{start_year_label}_{end_year_label}_NoESG"
+if HAS_ESG:
+    TEMPLATE_DIR_NAME = f"{start_year_label}_{end_year_label}_ESG"
 else:
-    TEMPLATE_FILE_NAME = f"{start_year_label}_{end_year_label}_NoESG_NoTech"
+    TEMPLATE_DIR_NAME = f"{start_year_label}_{end_year_label}_NoESG"
