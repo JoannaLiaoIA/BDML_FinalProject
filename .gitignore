@@ -12,9 +12,7 @@ __pycache__/
 .gradio/
 
 # 本地備份與測試用的檔案
-data/
 raw/
-processed/
 log/
 data_fetch/
 test.py
