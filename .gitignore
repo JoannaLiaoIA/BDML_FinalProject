@@ -8,7 +8,6 @@ __pycache__/
 # 環境變數、金鑰檔、Gradio 產生的本地暫存與快取資料夾
 .env
 .venv
-*.parquet
 .gradio/
 
 # 本地備份與測試用的檔案
